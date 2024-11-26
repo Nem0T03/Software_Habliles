@@ -3,7 +3,27 @@
 # Đường dẫn tới file chứa mật khẩu SSH
 password_file="/home/binh/password.txt"
 
+# Kiểm tra xem sshpass đã được cài đặt hay chưa
+if ! command -v sshpass &> /dev/null
+then
+    echo "sshpass chưa được cài đặt. Vui lòng cài đặt sshpass trước khi chạy script."
+    exit 1
+fi
+
+# Kiểm tra xem file mật khẩu có tồn tại không
+if [ ! -f "$password_file" ]; then
+    echo "File chứa mật khẩu không tồn tại: $password_file"
+    exit 1
+fi
+
 # Thực hiện rsync với mật khẩu từ file
-sudo rsync -avzhe "sshpass -f $password_file ssh"  binh@192.168.30.3:/var/www/html/mywebsite/ /var/www/html/mywebsite/
+echo "Đang thực hiện sao chép dữ liệu từ máy chủ..."
+sudo rsync -avzhe "sshpass -f $password_file ssh" binh@192.168.30.3:/var/www/html/mywebsite/ /var/www/html/mywebsite/
 
-
+# Kiểm tra kết quả của lệnh rsync
+if [ $? -eq 0 ]; then
+    echo "Sao chép thành công!"
+else
+    echo "Lỗi khi sao chép dữ liệu!"
+    exit 1
+fi
