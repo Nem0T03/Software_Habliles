@@ -1,6 +1,9 @@
-1. Cấu Hình EtherChannel
+# 1. Cấu Hình EtherChannel
+
 Trên Router R5 và R6:
+
 # Cấu hình EtherChannel trên R5
+
 en
 conf t
 int range e1/0-1
@@ -15,6 +18,7 @@ end
 show etherchannel summary
 
 # Cấu hình EtherChannel trên R6
+
 en
 conf t
 int range e1/0-1
@@ -29,10 +33,12 @@ end
 show etherchannel summary
 
 
-2. Cấu Hình VTP (VLAN Trunking Protocol)
+# 2. Cấu Hình VTP (VLAN Trunking Protocol)
+
 Switch R1 và R2:
 
 # Cấu hình VTP trên Switch R1
+
 en
 conf t
 vtp domain abc.com
@@ -45,6 +51,7 @@ show vtp status
 show vlan
 
 # Cấu hình VTP trên Switch R2
+
 en
 conf t
 vtp domain abc.com
@@ -55,11 +62,12 @@ vlan 40
 end
 show vtp status
 show vlan
-3. Gán Port cho các VLAN
+# 3. Gán Port cho các VLAN
+
 Switch R7 và R8:
-bash
-Sao chép mã
+
 # Gán Port cho VLAN trên Switch R7
+
 en
 conf t
 int e0/2
@@ -73,6 +81,7 @@ end
 show vlan
 
 # Gán Port cho VLAN trên Switch R8
+
 en
 conf t
 int e0/2
@@ -90,6 +99,7 @@ show vlan
 Multilayer Switch R5 và R6: 
 
 # Cấu hình SVI và HSRP trên Multilayer Switch R5
+
 en
 conf t
 ip routing
@@ -110,6 +120,7 @@ exit
 show standby brief
 
 # Cấu hình SVI và HSRP trên Multilayer Switch R6
+
 en
 conf t
 ip routing
@@ -130,10 +141,12 @@ exit
 show standby brief
 
 
-5. Cấu Hình DHCP trên Multilayer Switch
+# 5. Cấu Hình DHCP trên Multilayer Switch
+
 Multilayer Switch R5 và R6:
 
 # Cấu hình DHCP trên Multilayer Switch R5
+
 en
 conf t
 ip dhcp pool Vlan1
@@ -148,6 +161,7 @@ dns-server 8.8.8.8
 exit
 
 # Cấu hình DHCP trên Multilayer Switch R6
+
 en
 conf t
 ip dhcp pool Vlan3
@@ -161,10 +175,12 @@ default-router 172.16.40.3
 dns-server 8.8.8.8
 exit
 
-6. Cấu Hình Firewall
-Firewall 1 và Firewall 2:
+# 6. Cấu Hình Firewall
+
+# Firewall 1 và Firewall 2:
 
 # Cấu hình Firewall 1
+
 config system interface
 edit port3
 set mode static
@@ -175,6 +191,7 @@ exe ping 192.168.109.2
 show system interface ?
 
 # Cấu hình Firewall 2
+
 config system interface
 edit port3
 set mode static
@@ -184,10 +201,12 @@ end
 exe ping 192.168.109.2
 show system interface ?
 
-7. Cấu Hình Router Layer 3 và Kết Nối với Firewall
+# 7. Cấu Hình Router Layer 3 và Kết Nối với Firewall
+
 Switch Layer 3 (R5 và R6):
 
 # Cấu hình Switch Layer 3 (R5)
+
 en
 conf t
 vlan 200
