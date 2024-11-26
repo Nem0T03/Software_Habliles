@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -59,7 +59,6 @@
 
         button {
             background-color: black;
-            /* Green */
             border: none;
             color: rgb(255, 255, 255);
             padding: 8px 16px;
@@ -105,10 +104,10 @@
             text-align: center;
             -webkit-animation: glow 1.5s ease-in-out infinite alternate;
             -moz-animation: glow 1.5s ease-in-out infinite alternate;
-animation: glow 1.5s ease-in-out infinite alternate;
+            animation: glow 1.5s ease-in-out infinite alternate;
         }
 
-        @-webkit-keyframes glow {
+        @keyframes glow {
             from {
                 text-shadow: 0 0 6px #8af0bb, 0 0 12px #63c594, 0 0 18px #5ac08b, 0 0 24px #3c865d;
             }
@@ -125,15 +124,21 @@ animation: glow 1.5s ease-in-out infinite alternate;
 <div id="main">
     <div id="video-container">
         <video id="vid" autoplay="true" muted="muted" loop="loop" codecs="h264">
-            <source id="vidsrc"
-                    src="https://github.com/coding418/matrix-code-rain/blob/main/vid/matrix-code-rain-v0.3-downpour-mode....raw=true"
-                    type="video/mp4">
+            <source id="vidsrc" src="https://raw.githubusercontent.com/coding418/matrix-code-rain/main/vid/matrix-code-rain-v0.3-downpour-mode.mp4" type="video/mp4">
         </video>
         <div id="video-text">Welcome to the group 3</div>
     </div>
+
+    <h1 id="video-title">Welcome to the group 3</h1>
+
+    <div id="button-container">
+        <button onclick="change_vid(0)">Title Effect</button>
+        <button onclick="change_vid(1)">Downpour Mode</button>
+        <button onclick="change_vid(2)">Operator Mode</button>
+        <button onclick="change_vid(3)">Pixel Mode</button>
+        <button onclick="change_vid(4)">Webcam Mode</button>
+    </div>
 </div>
-
-
 
 <script>
     let vids = [
@@ -141,29 +146,29 @@ animation: glow 1.5s ease-in-out infinite alternate;
         "matrix-code-rain-v0.3-downpour-mode.mp4",
         "matrix-code-rain-v0.3-operator-mode.mp4",
         "matrix-code-rain-v0.3-pixel-mode.mp4",
-        "matrix-code-rain-v0.3-webcam-mode.mp4",
+        "matrix-code-rain-v0.3-webcam-mode.mp4"
     ];
 
     let titles = [
-        "Downpour Mode v0.3",
-        "Operator Mode v0.3",
-        "Webcam/Pixel Mode v0.3",
+        "Title Effect",
+        "Downpour Mode",
+        "Operator Mode",
+        "Pixel Mode",
+        "Webcam Mode"
     ];
 
-    let active = 1;
-
     let buttons = document.getElementsByTagName("button");
-
-    buttons[active].classList.add("active");
+    let active = 0;
 
     function change_vid(idx) {
         let vsrc = document.getElementById("vidsrc");
-        vsrc.src = "https://github.com/coding418/matrix-code-rain/blob/main/vid/" + vids[idx] + "?raw=true";
+        vsrc.src = "https://raw.githubusercontent.com/coding418/matrix-code-rain/main/vid/" + vids[idx] + "?raw=true";
 
         buttons[active].classList.remove("active");
         active = idx;
         buttons[active].classList.add("active");
 
+        document.getElementById("video-title").textContent = titles[idx] || "Welcome to the group 3";
         document.getElementById("vid").load();
         document.getElementById("vid").play();
     }
@@ -171,6 +176,3 @@ animation: glow 1.5s ease-in-out infinite alternate;
 
 </body>
 </html>
-
-
-
