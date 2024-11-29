@@ -1,5 +1,3 @@
-Dưới đây là bản chỉnh sửa để phù hợp với yêu cầu GitHub Markdown:
-
 ```markdown
 # 1. Cấu Hình EtherChannel
 
@@ -281,4 +279,4 @@ show ip dhcp snooping binding
 ```
 ```
 
-Lưu ý rằng tôi đã định dạng lại văn bản để phù hợp với cú pháp Markdown trong GitHub, sử dụng các khối mã (` ```bash ``` `) để định dạng các đoạn cấu hình và các tiêu đề phụ (`###`) cho từng phần của cấu hình.
+
