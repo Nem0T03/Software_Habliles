@@ -11,15 +11,19 @@
         body {
             margin: 0;
             padding: 0;
-            position: relative;
             font-family: 'Zilla Slab', monospace;
+            position: relative;
         }
 
         #main {
-            position: relative;
             width: 100vw;
             height: 100vh;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
 
         #video-container {
@@ -62,16 +66,13 @@
             border: none;
             color: rgb(255, 255, 255);
             padding: 8px 16px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
             font-size: 16px;
             margin: 4px 2px;
-            transition-duration: 1s;
             cursor: pointer;
             border-radius: 8px;
             border: 2px solid #4CAF50;
             font-family: 'Source Code Pro', monospace;
+            transition: 1s;
         }
 
         button:hover {
@@ -102,8 +103,6 @@
         .glow {
             color: #aeffd3;
             text-align: center;
-            -webkit-animation: glow 1.5s ease-in-out infinite alternate;
-            -moz-animation: glow 1.5s ease-in-out infinite alternate;
             animation: glow 1.5s ease-in-out infinite alternate;
         }
 
@@ -116,6 +115,13 @@
                 text-shadow: 0 0 12px #63c594, 0 0 18px #5ac08b, 0 0 24px #3c865d, 0 0 30px #003915;
             }
         }
+
+        #button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -123,7 +129,7 @@
 
 <div id="main">
     <div id="video-container">
-        <video id="vid" autoplay="true" muted="muted" loop="loop" codecs="h264">
+        <video id="vid" autoplay muted loop>
             <source id="vidsrc" src="https://raw.githubusercontent.com/coding418/matrix-code-rain/main/vid/matrix-code-rain-v0.3-downpour-mode.mp4" type="video/mp4">
         </video>
         <div id="video-text">Welcome to the group 3</div>
@@ -141,7 +147,7 @@
 </div>
 
 <script>
-    let vids = [
+    const vids = [
         "matrix-code-rain-v0.3-title-effect.mp4",
         "matrix-code-rain-v0.3-downpour-mode.mp4",
         "matrix-code-rain-v0.3-operator-mode.mp4",
@@ -149,7 +155,7 @@
         "matrix-code-rain-v0.3-webcam-mode.mp4"
     ];
 
-    let titles = [
+    const titles = [
         "Title Effect",
         "Downpour Mode",
         "Operator Mode",
@@ -157,20 +163,21 @@
         "Webcam Mode"
     ];
 
-    let buttons = document.getElementsByTagName("button");
+    const buttons = document.getElementsByTagName("button");
     let active = 0;
 
     function change_vid(idx) {
-        let vsrc = document.getElementById("vidsrc");
-        vsrc.src = "https://raw.githubusercontent.com/coding418/matrix-code-rain/main/vid/" + vids[idx] + "?raw=true";
+        const vsrc = document.getElementById("vidsrc");
+        vsrc.src = `https://raw.githubusercontent.com/coding418/matrix-code-rain/main/vid/${vids[idx]}?raw=true`;
 
         buttons[active].classList.remove("active");
         active = idx;
         buttons[active].classList.add("active");
 
-        document.getElementById("video-title").textContent = titles[idx] || "Welcome to the group 3";
-        document.getElementById("vid").load();
-        document.getElementById("vid").play();
+        document.getElementById("video-title").textContent = titles[idx];
+        const video = document.getElementById("vid");
+        video.load();
+        video.play();
     }
 </script>
 
