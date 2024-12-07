@@ -1,4 +1,4 @@
-### **Hướng Dẫn Cấu Hình Hệ Thống Domain Controller và Client (PC01 & PC02)**  
+### **Hướng Dẫn Cấu Hình Hệ Thống Domain Controller ( 2022 )và Client (PC01 & PC02)**  
 
 ---
 
