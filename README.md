@@ -39,7 +39,7 @@
 ### **6. Bảo Mật và Mã Hóa**  
 - **GnuPG (GNU Privacy Guard):**  
   Cung cấp khả năng mã hóa dữ liệu mạnh mẽ, đảm bảo tính bảo mật của thông tin.  
-- **Tường lửa và IDS/IPS:**  
+- **Tường lửa và IDS/IPS: ( fortgate )**  
   Triển khai các giải pháp bảo vệ khỏi mối đe dọa từ bên ngoài.
 
 ### **7. Giám Sát và Quản Lý Hệ Thống**  
