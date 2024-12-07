@@ -25,8 +25,10 @@
 ### **6. Bảo Mật và Mã Hóa**  
 - **GnuPG:** Mã hóa dữ liệu và xác thực chữ ký số, bảo vệ thông tin doanh nghiệp.
 
-### **7. Giám Sát và Quản Lý Hệ Thống**  
+### **7. Giám Sát và Quản Lý Hệ Thống NAGIOS**  
 - **Công cụ giám sát:** Theo dõi hiệu suất dịch vụ, phát hiện và xử lý kịp thời sự cố.
+
+## **8. Công cụ Lưu Trữ Dữ liệu và Backup Truenas**
 
 ---
 
@@ -69,5 +71,7 @@ Hệ thống `HABILES` mang lại:
    - Tích hợp công cụ giám sát để theo dõi và duy trì hiệu suất hệ thống.
 
 ---
+
+## **UPDATE Cloud Azure ............**
 
 👉 **Khám phá thêm về `HABILES` trên [GitHub](#).**
