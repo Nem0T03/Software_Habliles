@@ -1,72 +1,46 @@
 # **Giới Thiệu về HABILES**
 
-`HABILES` là một giải pháp IT tiên tiến, được thiết kế để tự động hóa triển khai hạ tầng CNTT, xây dựng một hệ thống mạng bảo mật, mạnh mẽ và linh hoạt. Hệ thống này đặc biệt phù hợp với các doanh nghiệp hiện đại, cung cấp các tính năng tối ưu hóa hạ tầng và quản lý hiệu quả.
+`HABILES` là một giải pháp CNTT hiện đại, được thiết kế nhằm tự động hóa triển khai hạ tầng, xây dựng hệ thống mạng bảo mật và linh hoạt. Đặc biệt phù hợp với doanh nghiệp, HABILES cung cấp các tính năng tối ưu hóa hạ tầng và quản lý hiệu quả.
 
 ---
 
 ## **Các Tính Năng Chính**
 
-### **1. Quản Lý Người Dùng và Thiết Bị**  
-- **Active Directory Domain Services (ADDS):**  
-  Quản lý tài khoản người dùng, tài nguyên và quyền truy cập tập trung, đơn giản hóa việc kiểm soát chính sách bảo mật.  
-- **NIC Teaming:**  
-  Tăng băng thông, cải thiện độ ổn định mạng, đồng thời giảm thiểu sự gián đoạn khi có sự cố với card mạng.
-
-### **2. Dịch Vụ Lưu Trữ và Sao Lưu Dữ Liệu**  
-- **Giải pháp sao lưu toàn diện:**  
-  Đảm bảo dữ liệu luôn được bảo vệ, với khả năng khôi phục nhanh chóng sau sự cố.  
-- **Tích hợp Azure & OneDrive:**  
-  Lưu trữ đám mây hiệu quả, linh hoạt, đồng thời đảm bảo dữ liệu an toàn và dễ dàng truy cập.
-
-### **3. Dịch Vụ Email và Giao Tiếp**  
-- **Microsoft Exchange Server:**  
-  Cung cấp giải pháp email doanh nghiệp với khả năng tích hợp lịch, danh bạ và quản lý nhiệm vụ.  
-- **Microsoft Teams (tuỳ chọn):**  
-  Tăng cường giao tiếp nội bộ với các tính năng họp trực tuyến và chia sẻ tài liệu.
-
-### **4. Quản Lý Mạng và Tên Miền**  
-- **Dịch vụ DNS:**  
-  Phân giải tên miền nhanh chóng, đảm bảo kết nối chính xác.  
-- **Dịch vụ DHCP:**  
-  Tự động cấp phát địa chỉ IP cho thiết bị trong mạng.
-
-### **5. Dịch Vụ Web và FTP**  
-- **Web Services:**  
-  Hỗ trợ triển khai các ứng dụng web, trang web nội bộ hoặc thương mại điện tử.  
-- **ProFTPD:**  
-  Cung cấp giải pháp quản lý tài nguyên qua giao thức FTP, đảm bảo tính linh hoạt và bảo mật.
-
-### **6. Bảo Mật và Mã Hóa**  
-- **GnuPG (GNU Privacy Guard):**  
-  Cung cấp khả năng mã hóa dữ liệu mạnh mẽ, đảm bảo tính bảo mật của thông tin.  
-- **Tường lửa và IDS/IPS: ( fortgate )**  
-  Triển khai các giải pháp bảo vệ khỏi mối đe dọa từ bên ngoài.
-
-### **7. Giám Sát và Quản Lý Hệ Thống**  
-- **Nagios:**  
-  Theo dõi hiệu suất dịch vụ, máy chủ và thiết bị, gửi cảnh báo kịp thời để giảm thiểu thời gian gián đoạn.
-
-### **8. Công Cụ Lưu Trữ Dữ Liệu và Backup**  
-- **TrueNAS:**  
-  Hệ thống lưu trữ mạnh mẽ, hỗ trợ lưu trữ chia sẻ và khôi phục dữ liệu hiệu quả.  
+| **STT** | **Tính Năng**                         | **Mô Tả**                                                                                 |
+|---------|---------------------------------------|------------------------------------------------------------------------------------------|
+| **1**   | **Quản Lý Người Dùng và Thiết Bị**     | **ADDS (Active Directory Domain Services):** Quản lý tài khoản, tài nguyên và quyền truy cập tập trung. |
+|         |                                       | **NIC Teaming:** Tăng băng thông và cải thiện độ ổn định mạng, giảm thiểu sự cố kết nối.  |
+| **2**   | **Dịch Vụ Lưu Trữ và Sao Lưu Dữ Liệu** | **Giải pháp sao lưu toàn diện:** Bảo vệ dữ liệu, hỗ trợ khôi phục nhanh chóng.           |
+|         |                                       | **Tích hợp Azure & OneDrive:** Lưu trữ đám mây hiệu quả, an toàn và dễ truy cập.          |
+| **3**   | **Dịch Vụ Email và Giao Tiếp**         | **Microsoft Exchange Server:** Giải pháp email tích hợp lịch, danh bạ, và quản lý nhiệm vụ. |
+|         |                                       | **Microsoft Teams (tuỳ chọn):** Tăng cường giao tiếp nội bộ với họp trực tuyến và chia sẻ tài liệu. |
+| **4**   | **Quản Lý Mạng và Tên Miền**           | **DNS:** Phân giải tên miền chính xác và nhanh chóng.                                    |
+|         |                                       | **DHCP:** Tự động cấp phát địa chỉ IP cho thiết bị trong mạng.                           |
+| **5**   | **Dịch Vụ Web và FTP**                 | **Web Services:** Triển khai các ứng dụng web và thương mại điện tử.                     |
+|         |                                       | **ProFTPD:** Quản lý tài nguyên qua FTP linh hoạt và bảo mật.                            |
+| **6**   | **Bảo Mật và Mã Hóa**                  | **GnuPG:** Mã hóa dữ liệu mạnh mẽ, đảm bảo tính bảo mật thông tin.                       |
+|         |                                       | **Tường lửa và IDS/IPS:** Bảo vệ khỏi mối đe dọa bên ngoài với giải pháp như Fortigate.  |
+| **7**   | **Giám Sát và Quản Lý Hệ Thống**       | **Nagios:** Theo dõi hiệu suất dịch vụ và gửi cảnh báo kịp thời, giảm thiểu gián đoạn.   |
+| **8**   | **Công Cụ Lưu Trữ và Sao Lưu**         | **TrueNAS:** Lưu trữ và khôi phục dữ liệu hiệu quả.                                      |
 
 ---
 
 ## **Tóm Tắt**  
-`HABILES` mang đến giải pháp công nghệ vượt trội với:  
+
+`HABILES` mang đến:  
 1. **An toàn dữ liệu và bảo mật toàn diện.**  
 2. **Quản lý tập trung, dễ mở rộng.**  
 3. **Hỗ trợ doanh nghiệp chuyển đổi số và tăng trưởng bền vững.**
 
 ---
 
-## **Công Nghệ Nổi Bật**  
+## **Công Nghệ Nổi Bật**
 
 | **Công Nghệ**         | **Chức Năng**                                 |
 |------------------------|-----------------------------------------------|
 | **CCNA**              | Đảm bảo nền tảng mạng vững chắc.             |
-| **ADDS & NIC Teaming** | Quản lý người dùng, tối ưu hóa mạng.         |
-| **Azure Backup**       | Giải pháp sao lưu và phục hồi dữ liệu.       |
+| **ADDS & NIC Teaming** | Quản lý người dùng và tối ưu hóa mạng.       |
+| **Azure Backup**       | Sao lưu và phục hồi dữ liệu hiệu quả.        |
 | **Mail Server**        | Quản lý và bảo mật email doanh nghiệp.       |
 | **DNS & DHCP**         | Tự động phân giải tên miền, cấp phát IP.     |
 | **Nagios**             | Giám sát hiệu suất hệ thống.                |
@@ -78,25 +52,25 @@
 ## **Hướng Dẫn Triển Khai**
 
 1. **Cài Đặt Hệ Thống Cơ Bản:**  
-   - Triển khai các dịch vụ mạng như DNS, DHCP, và thiết lập hệ thống lưu trữ với TrueNAS.  
+   - Triển khai dịch vụ DNS, DHCP, và thiết lập lưu trữ với TrueNAS.  
 
 2. **Cấu Hình Dịch Vụ Email:**  
-   - Thiết lập Microsoft Exchange hoặc tương đương để hỗ trợ giao tiếp nội bộ.
+   - Thiết lập Microsoft Exchange hoặc tương tự để hỗ trợ giao tiếp nội bộ.
 
 3. **Tích Hợp Azure và Bảo Mật:**  
-   - Cấu hình tích hợp với Azure để mở rộng khả năng lưu trữ và mã hóa dữ liệu với GnuPG.
+   - Cấu hình tích hợp Azure và mã hóa dữ liệu với GnuPG.
 
 4. **Giám Sát và Quản Lý Hệ Thống:**  
-   - Tích hợp Nagios để theo dõi hiệu suất máy chủ và phát hiện lỗi kịp thời.
+   - Sử dụng Nagios để theo dõi hiệu suất hệ thống và phát hiện lỗi.
 
 ---
 
-## **Cập Nhật Mới Nhất**  
+## **Cập Nhật Mới Nhất**
 
----> ** Đang cập nhât **
+Cập nhật mới sẽ sớm được bổ sung.  
 
-👉 **[Khám Phá HABILES trên GitHub](#)** để xem tài liệu chi tiết, mã nguồn và các hướng dẫn mở rộng.  
+👉 **[Khám Phá HABILES trên GitHub](#)** để xem tài liệu chi tiết và hướng dẫn mở rộng.  
 
 --- 
 
-Hy vọng bạn thấy tài liệu này đầy đủ và hữu ích hơn! Nếu cần thêm chi tiết, hãy cho biết! 😊
+Nếu cần thêm chi tiết hoặc có yêu cầu đặc biệt, hãy để lại ý kiến! 😊
