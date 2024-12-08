@@ -70,7 +70,7 @@
 
 ## **Cập Nhật Mới Nhất**
 
-Cập nhật mới sẽ sớm được bổ sung.  
+Cập nhật mới sẽ sớm được bổ sung ( Cloud )
 
 👉 **[Khám Phá HABILES trên GitHub](#)** để xem tài liệu chi tiết và hướng dẫn mở rộng.  
 
