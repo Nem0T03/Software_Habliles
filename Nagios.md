@@ -1,157 +1,90 @@
-# Cài Đặt Nagios XI trên Ubuntu 22.04
+# Cài Đặt Nagios XI trên Linux
 
-## Bước 1: Cập Nhật Các Gói Hệ Thống
+### Yêu Cầu:
+Trước khi bắt đầu cài đặt, bạn cần kết nối với máy chủ qua phiên terminal. Bạn cần đăng nhập vào máy chủ với quyền root (hoặc một người dùng có quyền root).
 
-Trước khi tiến hành cài đặt Nagios XI, bạn cần cập nhật các gói hệ thống để đảm bảo các phần mềm mới nhất được cài đặt.
+### Cài Đặt Nagios XI
 
-```bash
-sudo apt update && sudo apt upgrade -y
-```
+Có nhiều phương pháp để cài đặt Nagios XI, tất cả đều thực hiện cài đặt đầy đủ.
 
-## Bước 2: Cài Đặt Các Gói Cần Thiết
+#### 1. Cài Đặt Nhanh
 
-Cài đặt các gói phụ trợ cần thiết cho Nagios XI và các thư viện phụ thuộc:
-
-```bash
-sudo apt install -y autoconf bc gawk dc build-essential gcc libc6 make wget unzip apache2 php libapache2-mod-php libgd-dev libmcrypt-dev make libssl-dev snmp libnet-snmp-perl gettext
-```
-
-## Bước 3: Tải Về và Giải Nén Nagios XI
-
-Tạo thư mục chứa mã nguồn và tải về phiên bản mới nhất của Nagios XI:
+Chạy lệnh sau trong phiên terminal của bạn:
 
 ```bash
-mkdir nagiosxi
-cd nagiosxi
-sudo wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.4.13.tar.gz
-tar -xvf nagios-4.4.13.tar.gz
+curl https://assets.nagios.com/downloads/nagiosxi/install.sh | sh
 ```
 
-## Bước 4: Cài Đặt Nagios Core
+Lệnh này sẽ tải về và cài đặt Nagios XI. Sau khi cài đặt xong, bạn có thể tiếp tục với phần **Hoàn Tất Cài Đặt**.
 
-Chuyển đến thư mục chứa mã nguồn và biên dịch Nagios Core:
+#### 2. Tải Về và Cài Đặt Thủ Công
+
+Nếu bạn muốn cài đặt thủ công, bạn có thể sử dụng các lệnh sau:
 
 ```bash
 cd /tmp
-rm -rf nagiosxi xi*.tar.gz
-wget http://assets.nagios.com/downloads/nagiosxi/xi-latest.tar.gz
+wget https://assets.nagios.com/downloads/nagiosxi/xi-latest.tar.gz
 tar xzf xi-latest.tar.gz
 cd nagiosxi
-./upgrade
+./fullinstall
 ```
 
-Tạo user và group cho Nagios và thêm user Apache vào group Nagios:
+Lưu ý: Nếu bạn cần cài đặt phiên bản cụ thể của Nagios XI, bạn có thể truy cập trang web sau để lấy URL phiên bản và sử dụng URL đó trong lệnh `wget`:
 
-```bash
-make install-groups-users
-usermod -a -G nagios www-data
-make install
-```
+[Trang phiên bản Nagios XI](https://assets.nagios.com/downloads/nagiosxi/versions.php)
 
-Cài đặt các script cho Nagios daemon và cấu hình Apache:
-
-```bash
-make install-daemoninit
-make install-init
-make install-config
-make install-webconf
-a2enmod rewrite cgi
-```
-
-Tạo tài khoản admin cho Nagios:
-
-```bash
-htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
-```
-
-## Bước 5: Cài Đặt và Cấu Hình Plugin Nagios và NRPE
-
-Cài đặt các plugin giám sát Nagios và NRPE:
-
-```bash
-sudo apt install monitoring-plugins nagios-nrpe-plugin -y
-```
-
-Cấu hình các plugin bằng cách chỉnh sửa các tập tin cấu hình của Nagios:
-
-```bash
-cd /usr/local/nagios/etc/
-mkdir servers
-vi nagios.cfg
-```
-
-Mở dòng cấu hình `cfg_dir=/usr/local/nagios/etc/servers` và chỉnh sửa các tệp `resource.cfg` và `objects/contacts.cfg`. Thêm đường dẫn plugin giám sát:
-
-```bash
-$USER1$=/usr/lib/nagios/plugins
-```
-
-Chỉnh sửa file `objects/commands.cfg`:
-
-```bash
-define command{
-        command_name check_nrpe
-        command_line $USER1$/check_nrpe -H $HOSTADDRESS$ -c $ARG1$
-}
-```
-
-## Bước 6: Mở Port Trên Firewall
-
-Mở các port cần thiết cho Nagios qua firewall:
-
-```bash
-sudo ufw enable
-sudo ufw allow 80
-sudo ufw allow 443
-sudo ufw allow 22
-sudo ufw reload
-sudo ufw status
-```
-
-## Bước 7: Khởi Động Lại Dịch Vụ và Kiểm Tra Trạng Thái
-
-Khởi động lại dịch vụ Nagios và Apache:
-
-```bash
-sudo systemctl restart apache2
-sudo systemctl restart nagios4
-```
-
-Thiết lập các dịch vụ tự động khởi động khi hệ thống khởi động lại:
-
-```bash
-sudo systemctl enable apache2
-sudo systemctl enable nagios4
-```
-
-Kiểm tra trạng thái của các dịch vụ:
-
-```bash
-sudo systemctl status apache2
-sudo systemctl status nagios4
-```
-
-## Bước 8: Truy Cập Web Nagios
-
-Để truy cập giao diện web Nagios, bạn có thể sử dụng trình duyệt web trên máy tính local của mình. Trong thanh địa chỉ, nhập địa chỉ IP hoặc tên miền của máy chủ Ubuntu theo cú pháp sau:
-
-```
-http://your_server_ip/nagios
-```
-
-Hoặc
-
-```
-http://your_domain/nagios
-```
+Sau khi cài đặt xong, bạn có thể tiếp tục với phần **Hoàn Tất Cài Đặt**.
 
 ---
 
-### Tham Khảo:
+## Hoàn Tất Cài Đặt
 
-- **Tài liệu chính thức Nagios Core**: [Nagios Documentation](https://www.nagios.org/documentation/)
-- **Nagios XI Documentation**: [Nagios XI Documentation](https://support.nagios.com/kb/)
+Khi cài đặt hoàn tất, bạn sẽ thấy thông báo tương tự như sau:
+
+```
+Nagios XI Installation Complete!
+```
+
+Bạn có thể truy cập giao diện web của Nagios XI bằng cách vào:
+
+```
+http://<server_address>/nagiosxi
+```
+
+Truy cập vào giao diện người dùng qua URL được cung cấp trong phiên terminal. Bạn sẽ thấy màn hình cài đặt Nagios XI. Đầu tiên, bạn sẽ được yêu cầu cấu hình các cài đặt hệ thống chung.
+
+### Cấu Hình Cài Đặt Hệ Thống
+
+1. **Chọn cấu hình hệ thống**: Bạn có thể điều chỉnh các tùy chọn cấu hình hệ thống.
+2. **Cài Đặt Giấy Phép**: 
+   - **Trial** – Dùng thử (thông tin chi tiết xem ở phần "Starting a Nagios XI Trial").
+   - **Licensed** – Nhập mã bản quyền, Client ID và Enterprise Key.
+   - **Free** – Giới hạn tối đa 7 nút và 100 kiểm tra host/service.
+
+Sau khi chọn xong, nhấn **Next** để tiếp tục.
+
+### Cấu Hình Tài Khoản Admin
+
+Trên trang tiếp theo, bạn sẽ có các tùy chọn cấu hình tài khoản quản trị viên. Điều quan trọng nhất là bạn cần thay đổi mật khẩu quản trị viên (bạn không cần sử dụng mật khẩu được tạo ngẫu nhiên).
+
+Sau khi điều chỉnh xong, nhấn **Finish Install** để lưu cài đặt.
+
+### Hoàn Tất Cài Đặt
+
+Trang sẽ hiển thị logo quay trong khi nó áp dụng các cài đặt cho Nagios XI.
+
+Khi cài đặt hoàn tất, bạn sẽ thấy màn hình **Installation Complete** với tên người dùng và mật khẩu cần thiết để đăng nhập vào Nagios XI. Nhấn **Login to Nagios XI** để bắt đầu.
+
+### Đăng Nhập vào Nagios XI
+
+Khi màn hình đăng nhập hiện ra, nhập thông tin tài khoản và mật khẩu của bạn, rồi nhấn **Login**.
+
+Bạn sẽ cần chấp nhận thỏa thuận giấy phép để tiếp tục.
+
+Sau khi đăng nhập thành công, bạn sẽ được chuyển đến màn hình chính của Nagios XI.
 
 ---
 
-Cách tiếp cận này giúp bạn dễ dàng triển khai và quản lý Nagios trên Ubuntu 22.04.
+**Nguồn tham khảo:**
+- [Tài liệu cài đặt Nagios Core](https://www.nagios.org/documentation/)
+- [Tài liệu Nagios XI](https://support.nagios.com/kb/)
