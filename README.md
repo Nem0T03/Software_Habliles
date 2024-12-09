@@ -1,5 +1,3 @@
----
-
 # **Giới Thiệu về HABILES**
 
 `HABILES` là giải pháp CNTT hiện đại, được thiết kế để tự động hóa việc triển khai hạ tầng, xây dựng hệ thống mạng bảo mật và linh hoạt. Giải pháp này đặc biệt phù hợp với các doanh nghiệp, cung cấp các tính năng tối ưu hóa hạ tầng và quản lý hiệu quả.
