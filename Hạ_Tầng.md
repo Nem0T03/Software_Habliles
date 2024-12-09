@@ -1,5 +1,3 @@
-Dưới đây là cách cấu hình các bước trên bằng **Ansible**, được tổ chức chi tiết trong một repository:
-
 ---
 
 ### 1. Cấu trúc thư mục:
@@ -22,13 +20,10 @@ network-automation-ansible/
 ```
 
 ---
-Để triển khai cấu hình trên bằng **Ansible**, bạn cần thực hiện các bước sau:
 
----
+### 2. Cài đặt Ansible
 
-## 1. **Cài đặt Ansible**
-
-### Bước 1: Cài đặt Ansible trên máy điều khiển
+#### **Bước 1: Cài đặt Ansible trên máy điều khiển**
 1. **Cài đặt Ansible trên Linux**:
    ```bash
    sudo apt update
@@ -40,14 +35,14 @@ network-automation-ansible/
    ansible --version
    ```
 
-### Bước 2: Cài đặt các gói cần thiết
-Đảm bảo cài đặt các thư viện cần thiết để sử dụng với thiết bị mạng:
+#### **Bước 2: Cài đặt các gói cần thiết**
+Cài đặt các thư viện hỗ trợ thiết bị mạng:
    ```bash
    pip install paramiko netmiko ansible[network]
    ```
 
-### Bước 3: Tạo môi trường làm việc
-Tạo một thư mục để chứa file cấu hình và playbook:
+#### **Bước 3: Tạo môi trường làm việc**
+Tạo thư mục để chứa file cấu hình và playbook:
    ```bash
    mkdir -p ansible/networking
    cd ansible/networking
@@ -55,7 +50,7 @@ Tạo một thư mục để chứa file cấu hình và playbook:
 
 ---
 
-### 2. Cấu hình file `ansible.cfg`:
+### 3. Cấu hình file `ansible.cfg`
 ```ini
 [defaults]
 inventory = inventory/hosts
@@ -65,12 +60,11 @@ log_path = ansible.log
 
 ---
 
+### 4. Cấu hình các thiết bị
 
+#### **Bước 1: Tạo file `hosts` để liệt kê các thiết bị mạng**
+Tạo file `inventory/hosts` với các thiết bị như sau:
 
-## 3. **Cấu hình các thiết bị**
-
-### Bước 1: Tạo file `hosts` để liệt kê các thiết bị mạng
-Tạo file `inventory.ini` để chứa danh sách thiết bị:
 ```ini
 [routers]
 R5 ansible_host=192.168.1.5 ansible_user=admin ansible_password=admin ansible_network_os=ios
@@ -89,10 +83,11 @@ FW2 ansible_host=192.168.1.11 ansible_user=admin ansible_password=admin ansible_
 
 ---
 
-### Bước 2: Tạo các Playbook Ansible
+### 5. Tạo các Playbook Ansible
 
-#### **2.1. Playbook cấu hình EtherChannel**
-Tạo file `etherchannel.yml`:
+#### **5.1. Playbook cấu hình EtherChannel**
+Tạo file `playbooks/etherchannel.yml`:
+
 ```yaml
 ---
 - name: Configure EtherChannel
@@ -116,8 +111,9 @@ Tạo file `etherchannel.yml`:
 
 ---
 
-#### **2.2. Playbook cấu hình VTP**
-Tạo file `vtp.yml`:
+#### **5.2. Playbook cấu hình VTP**
+Tạo file `playbooks/vtp.yml`:
+
 ```yaml
 ---
 - name: Configure VTP
@@ -140,8 +136,9 @@ Tạo file `vtp.yml`:
 
 ---
 
-#### **2.3. Playbook cấu hình SVI VLAN và HSRP**
-Tạo file `svi_hsrp.yml`:
+#### **5.3. Playbook cấu hình SVI VLAN và HSRP**
+Tạo file `playbooks/svi_hsrp.yml`:
+
 ```yaml
 ---
 - name: Configure SVI and HSRP
@@ -177,8 +174,9 @@ Tạo file `svi_hsrp.yml`:
 
 ---
 
-#### **2.4. Playbook cấu hình DHCP**
-Tạo file `dhcp.yml`:
+#### **5.4. Playbook cấu hình DHCP**
+Tạo file `playbooks/dhcp.yml`:
+
 ```yaml
 ---
 - name: Configure DHCP
@@ -196,8 +194,9 @@ Tạo file `dhcp.yml`:
 
 ---
 
-#### **2.5. Playbook cấu hình Firewall**
-Tạo file `firewall.yml`:
+#### **5.5. Playbook cấu hình Firewall**
+Tạo file `playbooks/firewall.yml`:
+
 ```yaml
 ---
 - name: Configure Firewall Interfaces
@@ -217,19 +216,21 @@ Tạo file `firewall.yml`:
 
 ---
 
-### Bước 3: Triển khai playbook
-1. **Kiểm tra kết nối với các thiết bị**:
-   ```bash
-   ansible -i inventory.ini all -m ping
-   ```
+### 6. Triển khai Playbook
 
-2. **Chạy các playbook lần lượt**:
-   ```bash
-   ansible-playbook -i inventory.ini etherchannel.yml
-   ansible-playbook -i inventory.ini vtp.yml
-   ansible-playbook -i inventory.ini svi_hsrp.yml
-   ansible-playbook -i inventory.ini dhcp.yml
-   ansible-playbook -i inventory.ini firewall.yml
-   ```
+#### **Bước 1: Kiểm tra kết nối với các thiết bị**
+```bash
+ansible -i inventory/hosts all -m ping
+```
+
+#### **Bước 2: Chạy các Playbook lần lượt**
+Chạy các playbook theo thứ tự:
+```bash
+ansible-playbook -i inventory/hosts playbooks/etherchannel.yml
+ansible-playbook -i inventory/hosts playbooks/vtp.yml
+ansible-playbook -i inventory/hosts playbooks/svi_hsrp.yml
+ansible-playbook -i inventory/hosts playbooks/dhcp.yml
+ansible-playbook -i inventory/hosts playbooks/firewall.yml
+```
 
 ---
