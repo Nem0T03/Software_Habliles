@@ -1,7 +1,3 @@
-mdDưới đây là hướng dẫn cài đặt Nagios XI trên Ubuntu 22.04. Hướng dẫn được cấu trúc để có thể áp dụng trong môi trường GitHub, bao gồm các bước chi tiết và cấu hình cần thiết:
-
----
-
 # Cài Đặt Nagios XI trên Ubuntu 22.04
 
 ## Bước 1: Cập Nhật Các Gói Hệ Thống
@@ -14,26 +10,26 @@ sudo apt update && sudo apt upgrade -y
 
 ## Bước 2: Cài Đặt Các Gói Cần Thiết
 
-Tiến hành cài đặt các gói phụ trợ cần thiết cho NagioXI và các thư viện phụ thuộc:
+Cài đặt các gói phụ trợ cần thiết cho Nagios XI và các thư viện phụ thuộc:
 
 ```bash
 sudo apt install -y autoconf bc gawk dc build-essential gcc libc6 make wget unzip apache2 php libapache2-mod-php libgd-dev libmcrypt-dev make libssl-dev snmp libnet-snmp-perl gettext
 ```
 
-## Bước 3: Tải Về và Giải Nén NagiosXI
+## Bước 3: Tải Về và Giải Nén Nagios XI
 
-Tạo một thư mục chứa mã nguồn và tải NagiosXI:
+Tạo thư mục chứa mã nguồn và tải về phiên bản mới nhất của Nagios XI:
 
 ```bash
-mkdir nagioscore
-cd nagioscore
+mkdir nagiosxi
+cd nagiosxi
 sudo wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.4.13.tar.gz
 tar -xvf nagios-4.4.13.tar.gz
 ```
 
 ## Bước 4: Cài Đặt Nagios Core
 
-Chuyển vào thư mục chứa mã nguồn và biên dịch Nagios:
+Chuyển đến thư mục chứa mã nguồn và biên dịch Nagios Core:
 
 ```bash
 cd /tmp
@@ -158,4 +154,4 @@ http://your_domain/nagios
 
 ---
 
-Cách tiếp cận này giúp bạn có thể dễ dàng triển khai và quản lý Nagios trên Ubuntu 22.04.
+Cách tiếp cận này giúp bạn dễ dàng triển khai và quản lý Nagios trên Ubuntu 22.04.
