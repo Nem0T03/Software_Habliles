@@ -1,0 +1,12 @@
+---
+- name: Configure DHCP
+  hosts: routers
+  tasks:
+    - name: Configure DHCP pools
+      ios_config:
+        lines:
+          - network 172.16.10.0 255.255.255.0
+          - default-router 172.16.10.3
+          - dns-server 8.8.8.8
+        parents: ip dhcp pool Vlan1
+        when: inventory_hostname == 'R5'
