@@ -1,6 +1,8 @@
+---
+
 # **Giới Thiệu về HABILES**
 
-`HABILES` là một giải pháp CNTT hiện đại, được thiết kế nhằm tự động hóa triển khai hạ tầng, xây dựng hệ thống mạng bảo mật và linh hoạt. Đặc biệt phù hợp với doanh nghiệp, HABILES cung cấp các tính năng tối ưu hóa hạ tầng và quản lý hiệu quả.
+`HABILES` là giải pháp CNTT hiện đại, được thiết kế để tự động hóa việc triển khai hạ tầng, xây dựng hệ thống mạng bảo mật và linh hoạt. Giải pháp này đặc biệt phù hợp với các doanh nghiệp, cung cấp các tính năng tối ưu hóa hạ tầng và quản lý hiệu quả.
 
 ---
 
@@ -12,8 +14,8 @@
 |         |                                       | **NIC Teaming:** Tăng băng thông và cải thiện độ ổn định mạng, giảm thiểu sự cố kết nối.  |
 | **2**   | **Dịch Vụ Lưu Trữ và Sao Lưu Dữ Liệu** | **Giải pháp sao lưu toàn diện:** Bảo vệ dữ liệu, hỗ trợ khôi phục nhanh chóng.           |
 |         |                                       | **Tích hợp Azure & OneDrive:** Lưu trữ đám mây hiệu quả, an toàn và dễ truy cập.          |
-| **3**   | **Dịch Vụ Email và Giao Tiếp**         | **Microsoft Exchange Server:** Giải pháp email tích hợp lịch, danh bạ, và quản lý nhiệm vụ. |
-|         |                                       | **Microsoft Teams (tuỳ chọn):** Tăng cường giao tiếp nội bộ với họp trực tuyến và chia sẻ tài liệu. |
+|         |                                       | **Veeam Backup:** Sao lưu và phục hồi dữ liệu hiệu quả, bảo vệ dữ liệu ảo hóa và không gian đám mây. |
+| **3**   | **Dịch Vụ Email và Giao Tiếp**         | **Microsoft Teams (tuỳ chọn):** Tăng cường giao tiếp nội bộ với họp trực tuyến và chia sẻ tài liệu. |
 | **4**   | **Quản Lý Mạng và Tên Miền**           | **DNS:** Phân giải tên miền chính xác và nhanh chóng.                                    |
 |         |                                       | **DHCP:** Tự động cấp phát địa chỉ IP cho thiết bị trong mạng.                           |
 | **5**   | **Dịch Vụ Web và FTP**                 | **Web Services:** Triển khai các ứng dụng web và thương mại điện tử.                     |
@@ -41,6 +43,7 @@
 | **CCNA**              | Đảm bảo nền tảng mạng vững chắc.             |
 | **ADDS & NIC Teaming** | Quản lý người dùng và tối ưu hóa mạng.       |
 | **Azure Backup**       | Sao lưu và phục hồi dữ liệu hiệu quả.        |
+| **Veeam Backup**       | Sao lưu và phục hồi dữ liệu hiệu quả, bảo vệ dữ liệu ảo hóa và đám mây. |
 | **Mail Server**        | Quản lý và bảo mật email doanh nghiệp.       |
 | **DNS & DHCP**         | Tự động phân giải tên miền, cấp phát IP.     |
 | **Nagios**             | Giám sát hiệu suất hệ thống.                |
@@ -52,28 +55,35 @@
 ## **Hướng Dẫn Triển Khai**
 
 1. **Cài Đặt Hệ Thống Cơ Bản:**  
-   - Triển khai dịch vụ DNS, DHCP, và thiết lập lưu trữ với TrueNAS.  
+   - Triển khai dịch vụ DNS, DHCP, và thiết lập lưu trữ với TrueNAS.
 
 2. **Cấu Hình Dịch Vụ Email:**  
-   - Thiết lập Microsoft Exchange hoặc tương tự để hỗ trợ giao tiếp nội bộ.
+   - Thiết lập **Microsoft Teams** hoặc tương tự để hỗ trợ giao tiếp nội bộ.
 
 3. **Tích Hợp Azure và Bảo Mật:**  
    - Cấu hình tích hợp Azure và mã hóa dữ liệu với GnuPG.
 
 4. **Giám Sát và Quản Lý Hệ Thống:**  
    - Sử dụng Nagios để theo dõi hiệu suất hệ thống và phát hiện lỗi.
-  
 
-4. **Hình Ảnh sở đồ ( Đang cập nhật )**
-     <img src="https://github.com/Nem0T03/Company_Habliles/blob/main/Bi%E1%BB%83u%20%C4%91%E1%BB%93%20kh%C3%B4ng%20c%C3%B3%20ti%C3%AAu%20%C4%91%E1%BB%81.drawio.png">  
+5. **Sao Lưu và Phục Hồi Dữ Liệu:**  
+   - Sử dụng **Veeam Backup** để sao lưu và phục hồi dữ liệu, đặc biệt là trong môi trường ảo hóa và đám mây.
+
+---
+
+## **Sơ Đồ Triển Khai Hệ Thống**
+*Đang cập nhật...*
+
 ---
 
 ## **Cập Nhật Mới Nhất**
 
-Cập nhật mới sẽ sớm được bổ sung ( Cloud )
+Cập nhật mới sẽ sớm được bổ sung, đặc biệt là về **Cloud**.
 
-👉 **[Khám Phá HABILES trên GitHub](#)** để xem tài liệu chi tiết và hướng dẫn mở rộng.  
+👉 **[Khám Phá HABILES trên GitHub](#)** để xem tài liệu chi tiết và hướng dẫn mở rộng.
 
---- 
+---
 
 Nếu cần thêm chi tiết hoặc có yêu cầu đặc biệt, hãy để lại ý kiến! 😊
+
+---
