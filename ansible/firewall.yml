@@ -1,0 +1,14 @@
+---
+- name: Configure Firewall Interfaces
+  hosts: firewalls
+  tasks:
+    - name: Configure port3
+      fortios_config:
+        vdom: "root"
+        config: "system interface"
+        state: "present"
+        settings:
+          name: "port3"
+          mode: "static"
+          ip: "{{ '192.168.109.10' if inventory_hostname == 'FW1' else '192.168.109.11' }}"
+          allowaccess: "http https ping telnet ssh"

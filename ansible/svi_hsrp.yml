@@ -1,0 +1,30 @@
+---
+- name: Configure SVI and HSRP
+  hosts: routers
+  tasks:
+    - name: Enable IP routing
+      ios_config:
+        lines:
+          - ip routing
+
+    - name: Configure VLAN 10
+      ios_config:
+        lines:
+          - ip address 172.16.10.1 255.255.255.0
+          - no shutdown
+          - standby 1 ip 172.16.10.3
+          - standby 1 priority 20
+          - standby 1 preempt
+        parents: interface Vlan10
+        when: inventory_hostname == 'R5'
+
+    - name: Configure VLAN 30
+      ios_config:
+        lines:
+          - ip address 172.16.30.2 255.255.255.0
+          - no shutdown
+          - standby 3 ip 172.16.30.3
+          - standby 3 priority 20
+          - standby 3 preempt
+        parents: interface Vlan30
+        when: inventory_hostname == 'R6'

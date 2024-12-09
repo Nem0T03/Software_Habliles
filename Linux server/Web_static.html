@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <link href="./styles.css" rel="stylesheet">
+    <title>Matrix Code Rain - coding418</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Zilla Slab', monospace;
+            position: relative;
+        }
+
+        #main {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        video {
+            margin: auto;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #video-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            z-index: 1;
+            text-align: center;
+        }
+
+        h1, h2 {
+            margin-top: 20px;
+            font-family: 'Zilla Slab', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            color: #aeffd3;
+        }
+
+        button {
+            background-color: black;
+            border: none;
+            color: rgb(255, 255, 255);
+            padding: 8px 16px;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: 2px solid #4CAF50;
+            font-family: 'Source Code Pro', monospace;
+            transition: 1s;
+        }
+
+        button:hover {
+            background-color: #4CAF50;
+            color: black;
+            border-color: white;
+        }
+
+        .active {
+            background-color: #4CAF50;
+            color: black;
+        }
+
+        a {
+            font-family: 'Zilla Slab', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition-duration: 1s;
+            margin-bottom: 22px;
+            border-bottom: 2px solid transparent;
+        }
+
+        a:hover {
+            border-bottom: 2px solid #aeffd3;
+        }
+
+        .glow {
+            color: #aeffd3;
+            text-align: center;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 6px #8af0bb, 0 0 12px #63c594, 0 0 18px #5ac08b, 0 0 24px #3c865d;
+            }
+
+            to {
+                text-shadow: 0 0 12px #63c594, 0 0 18px #5ac08b, 0 0 24px #3c865d, 0 0 30px #003915;
+            }
+        }
+
+        #button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="main">
+    <div id="video-container">
+        <video id="vid" autoplay muted loop>
+            <source id="vidsrc" src="https://raw.githubusercontent.com/coding418/matrix-code-rain/main/vid/matrix-code-rain-v0.3-downpour-mode.mp4" type="video/mp4">
+        </video>
+        <div id="video-text">Welcome to the group 3</div>
+    </div>
+
+    <h1 id="video-title">Welcome to the group 3</h1>
+
+    <div id="button-container">
+        <button onclick="change_vid(0)">Title Effect</button>
+        <button onclick="change_vid(1)">Downpour Mode</button>
+        <button onclick="change_vid(2)">Operator Mode</button>
+        <button onclick="change_vid(3)">Pixel Mode</button>
+        <button onclick="change_vid(4)">Webcam Mode</button>
+    </div>
+</div>
+
+<script>
+    const vids = [
+        "matrix-code-rain-v0.3-title-effect.mp4",
+        "matrix-code-rain-v0.3-downpour-mode.mp4",
+        "matrix-code-rain-v0.3-operator-mode.mp4",
+        "matrix-code-rain-v0.3-pixel-mode.mp4",
+        "matrix-code-rain-v0.3-webcam-mode.mp4"
+    ];
+
+    const titles = [
+        "Title Effect",
+        "Downpour Mode",
+        "Operator Mode",
+        "Pixel Mode",
+        "Webcam Mode"
+    ];
+
+    const buttons = document.getElementsByTagName("button");
+    let active = 0;
+
+    function change_vid(idx) {
+        const vsrc = document.getElementById("vidsrc");
+        vsrc.src = `https://raw.githubusercontent.com/coding418/matrix-code-rain/main/vid/${vids[idx]}?raw=true`;
+
+        buttons[active].classList.remove("active");
+        active = idx;
+        buttons[active].classList.add("active");
+
+        document.getElementById("video-title").textContent = titles[idx];
+        const video = document.getElementById("vid");
+        video.load();
+        video.play();
+    }
+</script>
+
+</body>
+</html>
