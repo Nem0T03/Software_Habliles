@@ -1,4 +1,3 @@
----
 ### 1. Cấu trúc thư mục:
 ```plaintext
 network-automation-ansible/
