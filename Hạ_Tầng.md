@@ -1,282 +1,235 @@
-```markdown
-# 1. Cấu Hình EtherChannel
+Dưới đây là cách cấu hình các bước trên bằng **Ansible**, được tổ chức chi tiết trong một repository:
 
-Trên Router R5 và R6:
+---
 
-### Cấu hình EtherChannel trên R5
-
-```bash
-en
-conf t
-int range e1/0-1
-switchport trunk encapsulation dot1q
-switchport mode trunk
-channel-group 1 mode on
-exit
-int port-channel 1
-ip add 192.168.10.1 255.255.255.0
-no shut
-end
-show etherchannel summary
+### 1. Cấu trúc thư mục:
+```plaintext
+network-automation-ansible/
+├── ansible.cfg
+├── inventory/
+│   └── hosts
+├── playbooks/
+│   ├── etherchannel.yml
+│   ├── vtp.yml
+│   ├── vlan.yml
+│   ├── svi_hsrp.yml
+│   ├── dhcp.yml
+│   ├── firewall.yml
+│   ├── router_l3.yml
+│   └── dhcp_snooping.yml
+├── roles/
+└── README.md
 ```
 
-### Cấu hình EtherChannel trên R6
+---
+Để triển khai cấu hình trên bằng **Ansible**, bạn cần thực hiện các bước sau:
 
-```bash
-en
-conf t
-int range e1/0-1
-switchport trunk encapsulation dot1q
-switchport mode trunk
-channel-group 1 mode on
-exit
-int port-channel 1
-ip add 192.168.10.1 255.255.255.0
-no shut
-end
-show etherchannel summary
+---
+
+## 1. **Cài đặt Ansible**
+
+### Bước 1: Cài đặt Ansible trên máy điều khiển
+1. **Cài đặt Ansible trên Linux**:
+   ```bash
+   sudo apt update
+   sudo apt install -y ansible
+   ```
+
+2. **Kiểm tra phiên bản**:
+   ```bash
+   ansible --version
+   ```
+
+### Bước 2: Cài đặt các gói cần thiết
+Đảm bảo cài đặt các thư viện cần thiết để sử dụng với thiết bị mạng:
+   ```bash
+   pip install paramiko netmiko ansible[network]
+   ```
+
+### Bước 3: Tạo môi trường làm việc
+Tạo một thư mục để chứa file cấu hình và playbook:
+   ```bash
+   mkdir -p ansible/networking
+   cd ansible/networking
+   ```
+
+---
+
+### 2. Cấu hình file `ansible.cfg`:
+```ini
+[defaults]
+inventory = inventory/hosts
+host_key_checking = False
+log_path = ansible.log
 ```
 
-# 2. Cấu Hình VTP (VLAN Trunking Protocol)
+---
 
-Trên Switch R1 và R2:
 
-### Cấu hình VTP trên Switch R1
 
-```bash
-en
-conf t
-vtp domain abc.com
-vtp mode server
-vtp password 123
-vlan 10
-vlan 20
-end
-show vtp status
-show vlan
+## 3. **Cấu hình các thiết bị**
+
+### Bước 1: Tạo file `hosts` để liệt kê các thiết bị mạng
+Tạo file `inventory.ini` để chứa danh sách thiết bị:
+```ini
+[routers]
+R5 ansible_host=192.168.1.5 ansible_user=admin ansible_password=admin ansible_network_os=ios
+R6 ansible_host=192.168.1.6 ansible_user=admin ansible_password=admin ansible_network_os=ios
+
+[switches]
+R1 ansible_host=192.168.1.1 ansible_user=admin ansible_password=admin ansible_network_os=ios
+R2 ansible_host=192.168.1.2 ansible_user=admin ansible_password=admin ansible_network_os=ios
+R7 ansible_host=192.168.1.7 ansible_user=admin ansible_password=admin ansible_network_os=ios
+R8 ansible_host=192.168.1.8 ansible_user=admin ansible_password=admin ansible_network_os=ios
+
+[firewalls]
+FW1 ansible_host=192.168.1.10 ansible_user=admin ansible_password=admin ansible_network_os=fortios
+FW2 ansible_host=192.168.1.11 ansible_user=admin ansible_password=admin ansible_network_os=fortios
 ```
 
-### Cấu hình VTP trên Switch R2
+---
 
-```bash
-en
-conf t
-vtp domain abc.com
-vtp mode server
-vtp password 123
-vlan 30
-vlan 40
-end
-show vtp status
-show vlan
+### Bước 2: Tạo các Playbook Ansible
+
+#### **2.1. Playbook cấu hình EtherChannel**
+Tạo file `etherchannel.yml`:
+```yaml
+---
+- name: Configure EtherChannel
+  hosts: routers
+  tasks:
+    - name: Configure EtherChannel on interfaces
+      ios_config:
+        lines:
+          - switchport trunk encapsulation dot1q
+          - switchport mode trunk
+          - channel-group 1 mode on
+        parents: interface range Ethernet1/0-1
+
+    - name: Assign IP to Port-Channel
+      ios_config:
+        lines:
+          - ip address 192.168.10.1 255.255.255.0
+          - no shutdown
+        parents: interface Port-channel1
 ```
 
-# 3. Gán Port cho các VLAN
+---
 
-Trên Switch R7 và R8:
+#### **2.2. Playbook cấu hình VTP**
+Tạo file `vtp.yml`:
+```yaml
+---
+- name: Configure VTP
+  hosts: switches
+  tasks:
+    - name: Configure VTP domain and mode
+      ios_config:
+        lines:
+          - vtp domain abc.com
+          - vtp mode server
+          - vtp password 123
 
-### Gán Port cho VLAN trên Switch R7
-
-```bash
-en
-conf t
-int e0/2
-switchport mode access
-switchport access vlan 10
-exit
-int e0/3
-switchport mode access
-switchport access vlan 20
-end
-show vlan
+    - name: Create VLANs
+      ios_config:
+        lines:
+          - vlan 10
+          - vlan 20
+        when: inventory_hostname == 'R1'
 ```
 
-### Gán Port cho VLAN trên Switch R8
+---
 
-```bash
-en
-conf t
-int e0/2
-switchport mode access
-switchport access vlan 30
-exit
-int e0/3
-switchport mode access
-switchport access vlan 40
-end
-show vlan
+#### **2.3. Playbook cấu hình SVI VLAN và HSRP**
+Tạo file `svi_hsrp.yml`:
+```yaml
+---
+- name: Configure SVI and HSRP
+  hosts: routers
+  tasks:
+    - name: Enable IP routing
+      ios_config:
+        lines:
+          - ip routing
+
+    - name: Configure VLAN 10
+      ios_config:
+        lines:
+          - ip address 172.16.10.1 255.255.255.0
+          - no shutdown
+          - standby 1 ip 172.16.10.3
+          - standby 1 priority 20
+          - standby 1 preempt
+        parents: interface Vlan10
+        when: inventory_hostname == 'R5'
+
+    - name: Configure VLAN 30
+      ios_config:
+        lines:
+          - ip address 172.16.30.2 255.255.255.0
+          - no shutdown
+          - standby 3 ip 172.16.30.3
+          - standby 3 priority 20
+          - standby 3 preempt
+        parents: interface Vlan30
+        when: inventory_hostname == 'R6'
 ```
 
-# 4. Cấu Hình SVI VLAN và HSRP
+---
 
-Trên Multilayer Switch R5 và R6:
-
-### Cấu hình SVI và HSRP trên Multilayer Switch R5
-
-```bash
-en
-conf t
-ip routing
-int vlan 10
-ip add 172.16.10.1 255.255.255.0
-no shut
-standby 1 ip 172.16.10.3
-standby 1 priority 20
-standby 1 preempt
-exit
-int vlan 20
-ip add 172.16.20.1 255.255.255.0
-no shut
-standby 2 ip 172.16.20.3
-standby 2 priority 20
-standby 2 preempt
-exit
-show standby brief
+#### **2.4. Playbook cấu hình DHCP**
+Tạo file `dhcp.yml`:
+```yaml
+---
+- name: Configure DHCP
+  hosts: routers
+  tasks:
+    - name: Configure DHCP pools
+      ios_config:
+        lines:
+          - network 172.16.10.0 255.255.255.0
+          - default-router 172.16.10.3
+          - dns-server 8.8.8.8
+        parents: ip dhcp pool Vlan1
+        when: inventory_hostname == 'R5'
 ```
 
-### Cấu hình SVI và HSRP trên Multilayer Switch R6
+---
 
-```bash
-en
-conf t
-ip routing
-int vlan 30
-ip add 172.16.30.2 255.255.255.0
-no shut
-standby 3 ip 172.16.30.3
-standby 3 priority 20
-standby 3 preempt
-exit
-int vlan 40
-ip add 172.16.40.2 255.255.255.0
-no shut
-standby 4 ip 172.16.40.3
-standby 4 priority 20
-standby 4 preempt
-exit
-show standby brief
+#### **2.5. Playbook cấu hình Firewall**
+Tạo file `firewall.yml`:
+```yaml
+---
+- name: Configure Firewall Interfaces
+  hosts: firewalls
+  tasks:
+    - name: Configure port3
+      fortios_config:
+        vdom: "root"
+        config: "system interface"
+        state: "present"
+        settings:
+          name: "port3"
+          mode: "static"
+          ip: "{{ '192.168.109.10' if inventory_hostname == 'FW1' else '192.168.109.11' }}"
+          allowaccess: "http https ping telnet ssh"
 ```
 
-# 5. Cấu Hình DHCP trên Multilayer Switch
+---
 
-Trên Multilayer Switch R5 và R6:
+### Bước 3: Triển khai playbook
+1. **Kiểm tra kết nối với các thiết bị**:
+   ```bash
+   ansible -i inventory.ini all -m ping
+   ```
 
-### Cấu hình DHCP trên Multilayer Switch R5
+2. **Chạy các playbook lần lượt**:
+   ```bash
+   ansible-playbook -i inventory.ini etherchannel.yml
+   ansible-playbook -i inventory.ini vtp.yml
+   ansible-playbook -i inventory.ini svi_hsrp.yml
+   ansible-playbook -i inventory.ini dhcp.yml
+   ansible-playbook -i inventory.ini firewall.yml
+   ```
 
-```bash
-en
-conf t
-ip dhcp pool Vlan1
-network 172.16.10.0 255.255.255.0
-default-router 172.16.10.3
-dns-server 8.8.8.8
-exit
-ip dhcp pool Vlan2
-network 172.16.20.0 255.255.255.0
-default-router 172.16.20.3
-dns-server 8.8.8.8
-exit
-```
-
-### Cấu hình DHCP trên Multilayer Switch R6
-
-```bash
-en
-conf t
-ip dhcp pool Vlan3
-network 172.16.30.0 255.255.255.0
-default-router 172.16.30.3
-dns-server 8.8.8.8
-exit
-ip dhcp pool Vlan4
-network 172.16.40.0 255.255.255.0
-default-router 172.16.40.3
-dns-server 8.8.8.8
-exit
-```
-
-# 6. Cấu Hình Firewall
-
-Trên Firewall 1 và Firewall 2:
-
-### Cấu hình Firewall 1
-
-```bash
-config system interface
-edit port3
-set mode static
-set ip 192.168.109.10 255.255.255.0
-set allowaccess http https ping telnet ssh
-end
-exe ping 192.168.109.2
-show system interface
-```
-
-### Cấu hình Firewall 2
-
-```bash
-config system interface
-edit port3
-set mode static
-set ip 192.168.109.11 255.255.255.0
-set allowaccess http https ping telnet ssh
-end
-exe ping 192.168.109.2
-show system interface
-```
-
-# 7. Cấu Hình Router Layer 3 và Kết Nối với Firewall
-
-Trên Switch Layer 3 (R5 và R6):
-
-### Cấu hình Switch Layer 3 trên R5
-
-```bash
-en
-conf t
-vlan 200
-int vlan 200
-ip add 192.168.200.1 255.255.255.0
-no shut
-exit
-ip route 0.0.0.0 0.0.0.0 192.168.200.2
-int range e0/0, e1/0
-switchport mode access
-switchport access vlan 200
-end
-show ip int brief
-```
-
-### Cấu hình Switch Layer 3 trên R6
-
-```bash
-en
-conf t
-vlan 210
-int vlan 210
-ip add 192.168.210.1 255.255.255.0
-no shut
-exit
-ip route 0.0.0.0 0.0.0.0 192.168.210.2
-int range e1/0, e0/0
-switchport mode access
-switchport access vlan 210
-end
-show ip int brief
-show vlan
-```
-
-# 8. Cấu Hình DHCP Snooping
-
-```bash
-ip dhcp snooping
-ip dhcp snooping vlan 2
-int range e0/2-3
-ip dhcp snooping trust
-ip dhcp snooping database flash:snooping-db
-show ip dhcp snooping
-show ip dhcp snooping binding
-```
-```
-
-
+---
