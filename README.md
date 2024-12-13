@@ -51,3 +51,9 @@ Hệ thống HABILES được tích hợp đồng bộ, hỗ trợ đầy đủ 
 
 (Phần này có thể được bổ sung sơ đồ về tích hợp giữa các thành phần như ADDS, NagiosXI, Ansible, và Web Services).
 
+
+
+## **Tích Hợp Cloud**
+
+**Đang cập nhật.
+
