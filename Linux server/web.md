@@ -1,5 +1,3 @@
----
-
 # Hướng Dẫn Triển Khai Website Trên Linux
 
 ## 1. Yêu Cầu Hệ Thống
