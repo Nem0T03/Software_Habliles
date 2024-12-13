@@ -13,75 +13,41 @@
 | **2**   | **Dịch Vụ Lưu Trữ và Sao Lưu Dữ Liệu** | **Giải pháp sao lưu toàn diện:** Bảo vệ dữ liệu, hỗ trợ khôi phục nhanh chóng.           |
 |         |                                       | **Tích hợp Azure & OneDrive:** Lưu trữ đám mây hiệu quả, an toàn và dễ truy cập.          |
 |         |                                       | **Veeam Backup:** Sao lưu và phục hồi dữ liệu hiệu quả, bảo vệ dữ liệu ảo hóa và không gian đám mây. |
-| **3**   | **Dịch Vụ Email và Giao Tiếp**         | **Microsoft Teams (tuỳ chọn):** Tăng cường giao tiếp nội bộ với họp trực tuyến và chia sẻ tài liệu. |
+| **3**   | **Dịch Vụ Email và Giao Tiếp**         | **Microsoft 365 (Exchange Online):** Tối ưu hóa giao tiếp qua email và chát nhóm. |
+|         |                                       | **Microsoft Teams (tuỳ chọn):** Tăng cường giao tiếp nội bộ với họp trực tuyến và chia sẻ tài liệu. |
 | **4**   | **Quản Lý Mạng và Tên Miền**           | **DNS:** Phân giải tên miền chính xác và nhanh chóng.                                    |
 |         |                                       | **DHCP:** Tự động cấp phát địa chỉ IP cho thiết bị trong mạng.                           |
 | **5**   | **Dịch Vụ Web và FTP**                 | **Web Services:** Triển khai các ứng dụng web và thương mại điện tử.                     |
 |         |                                       | **ProFTPD:** Quản lý tài nguyên qua FTP linh hoạt và bảo mật.                            |
+|         |                                       | **SSL:** Đảm bảo an toàn dữ liệu và giao tiếp trên các dịch vụ web.                      |
 | **6**   | **Bảo Mật và Mã Hóa**                  | **GnuPG:** Mã hóa dữ liệu mạnh mẽ, đảm bảo tính bảo mật thông tin.                       |
 |         |                                       | **Tường lửa và IDS/IPS:** Bảo vệ khỏi mối đe dọa bên ngoài với giải pháp như Fortigate.  |
-| **7**   | **Giám Sát và Quản Lý Hệ Thống**       | **Nagios:** Theo dõi hiệu suất dịch vụ và gửi cảnh báo kịp thời, giảm thiểu gián đoạn.   |
+| **7**   | **Giám Sát và Quản Lý Hệ Thống**       | **NagiosXI:** Theo dõi hiệu suất dịch vụ và gửi cảnh báo kịp thời, giảm thiểu gián đoạn.   |
+|         |                                       | **Các Agent Nagios:** Triển khai trên Windows và Linux để thu thập dữ liệu thông minh.|
 | **8**   | **Công Cụ Lưu Trữ và Sao Lưu**         | **TrueNAS:** Lưu trữ và khôi phục dữ liệu hiệu quả.                                      |
+| **9**   | **Triển Khai Tự Động**              | **Ansible:** Triển khai hạ tầng tự động nhanh chóng, kết hợp với Python tăng tính tương tác. |
+
+---
+
+## **Tích Hợp và Sơ Đồ Hệ Thống**
+
+Hệ thống HABILES được tích hợp đồng bộ, hỗ trợ đầy đủ từ triển khai đến giám sát:
+1. **Tích hợp Ansible với Python** để tạo các kịch bản tự động hóa hiệu quả.
+2. **NagiosXI** giám sát toàn diện, kịp thời phát hiện các vấn đề trong hệ thống.
+3. **SSL** giúp bảo vệ dữ liệu trên các dịch vụ web.
 
 ---
 
 ## **Tóm Tắt**  
 
 `HABILES` mang đến:  
-1. **An toàn dữ liệu và bảo mật toàn diện.**  
-2. **Quản lý tập trung, dễ mở rộng.**  
-3. **Hỗ trợ doanh nghiệp chuyển đổi số và tăng trưởng bền vững.**
+1. **An toàn dữ liệu và bảo mật tối ưu** nhờ mã hóa mạnh mẽ và các giải pháp tường lửa.  
+2. **Hiệu quả quản lý và triển khai** với các công cụ tự động hóa tiên tiến.  
+3. **Giám sát hệ thống chặt chẽ** qua NagiosXI và các agent hỗ trợ đa nền tảng.  
 
 ---
 
-## **Công Nghệ Nổi Bật**
+## **Sơ Đồ Minh Họa**
 
-| **Công Nghệ**         | **Chức Năng**                                 |
-|------------------------|-----------------------------------------------|
-| **CCNA**              | Đảm bảo nền tảng mạng vững chắc.             |
-| **ADDS & NIC Teaming** | Quản lý người dùng và tối ưu hóa mạng.       |
-| **Azure Backup**       | Sao lưu và phục hồi dữ liệu hiệu quả.        |
-| **Veeam Backup**       | Sao lưu và phục hồi dữ liệu hiệu quả, bảo vệ dữ liệu ảo hóa và đám mây. |
-| **Mail Server**        | Quản lý và bảo mật email doanh nghiệp.       |
-| **DNS & DHCP**         | Tự động phân giải tên miền, cấp phát IP.     |
-| **Nagios**             | Giám sát hiệu suất hệ thống.                |
-| **TrueNAS**            | Giải pháp lưu trữ tập trung và sao lưu.      |
-| **GnuPG**              | Bảo mật và mã hóa dữ liệu quan trọng.        |
+(Phần này có thể được bổ sung sơ đồ về tích hợp giữa các thành phần như ADDS, NagiosXI, Ansible, và Web Services).
 
----
-
-## **Hướng Dẫn Triển Khai**
-
-1. **Cài Đặt Hệ Thống Cơ Bản:**  
-   - Triển khai dịch vụ DNS, DHCP, và thiết lập lưu trữ với TrueNAS.
-
-2. **Cấu Hình Dịch Vụ Email:**  
-   - Thiết lập **Microsoft Teams** hoặc tương tự để hỗ trợ giao tiếp nội bộ.
-
-3. **Tích Hợp Azure và Bảo Mật:**  
-   - Cấu hình tích hợp Azure và mã hóa dữ liệu với GnuPG.
-
-4. **Giám Sát và Quản Lý Hệ Thống:**  
-   - Sử dụng Nagios để theo dõi hiệu suất hệ thống và phát hiện lỗi.
-
-5. **Sao Lưu và Phục Hồi Dữ Liệu:**  
-   - Sử dụng **Veeam Backup** để sao lưu và phục hồi dữ liệu, đặc biệt là trong môi trường ảo hóa và đám mây.
-
----
-
-## **Sơ Đồ Triển Khai Hệ Thống**
-*Đang cập nhật...*
-<img src="https://github.com/Nem0T03/Company_Habliles/blob/main/Bi%E1%BB%83u%20%C4%91%E1%BB%93%20kh%C3%B4ng%20c%C3%B3%20ti%C3%AAu%20%C4%91%E1%BB%81.drawio.png">
----
-
-## **Cập Nhật Mới Nhất**
-
-Cập nhật mới sẽ sớm được bổ sung, đặc biệt là về **Cloud**.
-
-👉 **[Khám Phá HABILES trên GitHub](#)** để xem tài liệu chi tiết và hướng dẫn mở rộng.
-
----
-
-Nếu cần thêm chi tiết hoặc có yêu cầu đặc biệt, hãy để lại ý kiến! 😊
-
----
