@@ -1,5 +1,3 @@
-Để triển khai một website trên Linux, bạn có thể thực hiện các bước dưới đây theo định dạng GitHub Markdown để dễ dàng chia sẻ hoặc lưu trữ. Đây là hướng dẫn tổng quát, bạn có thể tùy chỉnh theo nhu cầu.
-
 ---
 
 # Hướng Dẫn Triển Khai Website Trên Linux
@@ -138,5 +136,3 @@ Bạn đã triển khai thành công website trên Linux. Nếu gặp lỗi, ki�
 - Nginx: `/var/log/nginx/error.log`
 
 --- 
-
-Chúc bạn thành công!
