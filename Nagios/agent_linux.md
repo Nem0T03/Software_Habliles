@@ -1,88 +1,226 @@
-### **Cài Đặt Agent NRPE cho Linux (Nagios XI)**
+```markdown
+# Nagios Cross-Platform Agent (NCPA) Installation Guide
 
-Dưới đây là hướng dẫn chi tiết về cách cài đặt **Linux NRPE Agent** cho Nagios XI trên các bản phân phối hỗ trợ, bao gồm RHEL/CentOS/Oracle Linux/CloudLinux, Fedora, SLES, OpenSUSE, Ubuntu và Debian.
+## Installing NCPA on Debian/Ubuntu-based Systems
 
----
-
-#### **1. Các bản phân phối hỗ trợ**
-- RHEL/CentOS/Oracle Linux/CloudLinux 5+
-- Fedora 14+
-- SLES 11+
-- OpenSUSE 11+
-- Ubuntu 12+
-- Debian 6+
-
-#### **2. Cài Đặt Agent trên Linux**
-
-1. **Tải về Linux NRPE Agent**  
-   Truy cập vào thư mục `/tmp` trên máy chủ Linux mà bạn muốn giám sát, rồi tải về tệp cài đặt từ Nagios:
-
+### For Debian 11.x amd64:
+1. Download the latest NCPA package:
    ```bash
-   cd /tmp
-   wget https://assets.nagios.com/downloads/nagiosxi/agents/linux-nrpe-agent.tar.gz
+   wget https://assets.nagios.com/downloads/ncpa/ncpa-latest.d11.amd64.deb
+   ```
+2. Install the package:
+   ```bash
+   dpkg -i ./ncpa-latest.d11.amd64.deb
    ```
 
-2. **Giải nén tệp tải về**
-
-   Sau khi tải tệp `.tar.gz`, giải nén tệp:
-
+### For Ubuntu i386:
+1. Download the latest NCPA package:
    ```bash
-   tar xzf linux-nrpe-agent.tar.gz
+   wget https://assets.nagios.com/downloads/ncpa/ncpa-latest.i386.deb
+   ```
+2. Install the package:
+   ```bash
+   sudo dpkg -i ./ncpa-latest.i386.deb
    ```
 
-3. **Chuyển vào thư mục con vừa tạo**
-
-   Đổi thư mục sang thư mục vừa giải nén:
-
+### For Ubuntu amd64:
+1. Download the latest NCPA package:
    ```bash
-   cd linux-nrpe-agent
+   wget https://assets.nagios.com/downloads/ncpa/ncpa-latest.amd64.deb
+   ```
+2. Install the package:
+   ```bash
+   sudo dpkg -i ./ncpa-latest.amd64.deb
    ```
 
-4. **Chạy script cài đặt**
-
-   Tiến hành cài đặt bằng cách chạy script dưới quyền root. Nếu bạn sử dụng Ubuntu, bạn cần chạy với quyền sudo (hoặc sử dụng `sudo -i` để chuyển sang root):
-
+### For Ubuntu 22 amd64:
+1. Download the NCPA package for Ubuntu 22:
    ```bash
-   ./fullinstall
+   wget https://assets.nagios.com/downloads/ncpa/ncpa-latest.u22.amd64.deb
+   ```
+2. Install the package:
+   ```bash
+   sudo dpkg -i ./ncpa-latest.u22.amd64.deb
    ```
 
-#### **3. Lựa chọn chế độ cài đặt**
-- Bạn có thể chọn chế độ cài đặt cho NRPE bằng cách sử dụng tùy chọn `-m`. Có hai chế độ cài đặt:
-  - **xinetd mode**: Cài đặt NRPE dưới hệ thống init `xinetd`.
-  - **daemon mode**: Cài đặt NRPE dưới hệ thống `systemd`.
+After installation, proceed to the "Configuring NCPA" section.
 
-  Lưu ý:
-  - Các bản phân phối mới hơn như CentOS Stream 9 có thể không hỗ trợ gói `xinetd`. Trong trường hợp này, hệ thống sẽ tự động cài đặt dưới chế độ `daemon`.
+## Installing NCPA on MacOS
 
-#### **4. Cài đặt yêu cầu**
-Khi chạy script `fullinstall`, nó sẽ tự động:
-- Cập nhật các kho phần mềm của hệ điều hành.
-- Cài đặt các gói phần mềm cần thiết.
-- Tạo người dùng và nhóm cần thiết.
-- Định nghĩa các dịch vụ cho `xinetd` (nếu sử dụng).
-- Biên dịch và cài đặt agent và các plugin.
-- Cấu hình tường lửa.
-- Cấu hình agent.
+1. Download the NCPA DMG package:
+   ```bash
+   curl -L -o ncpa-2.2.1.dmg https://assets.nagios.com/downloads/ncpa/ncpa-2.2.1.dmg
+   ```
+2. Attach the DMG:
+   ```bash
+   sudo hdiutil attach ncpa-2.2.1.dmg
+   ```
+3. Install NCPA:
+   ```bash
+   cd /Volumes/NCPA-2.2.1
+   sudo sh ./install.sh
+   ```
+4. Detach the DMG after installation:
+   ```bash
+   cd /
+   sudo hdiutil detach /Volumes/NCPA-2.2.1
+   ```
 
-#### **5. Cấu hình kết nối**
-Khi script chạy, nó sẽ yêu cầu bạn nhập địa chỉ IP của máy chủ giám sát Nagios của bạn. Bạn có thể nhập:
-- Một địa chỉ duy nhất.
-- Một danh sách các địa chỉ, phân cách bằng dấu cách.
-- Một dải địa chỉ với định dạng CIDR, ví dụ: `10.25.0.0/16`.
+If the NCPA listener service does not start after installation, disable the security feature with the following command:
+```bash
+sudo spctl --master-disable
+spctl --status
+```
 
-Điều này sẽ cấu hình daemon `xinetd` để cho phép kết nối từ các địa chỉ này tới quá trình agent.
+Then, restart the NCPA listener service:
+```bash
+sudo /usr/local/ncpa/ncpa_listener
+```
 
----
+Verify that NCPA is running:
+```bash
+sudo launchctl list | grep -Ei 'ncpa'
+```
 
-#### **Lưu ý:**
-- Khi nâng cấp Agent trên các hệ thống đã được giám sát, bạn có thể cần phải xóa cấu hình `xinetd` hoặc `systemd` hiện tại nếu bạn đã thay đổi chế độ cài đặt qua các lần nâng cấp.
+Proceed to the "Configuring NCPA" section.
 
-### **Tóm tắt các bước cài đặt**
-1. Tải tệp cài đặt từ link của Nagios.
-2. Giải nén và vào thư mục cài đặt.
-3. Chạy script cài đặt với quyền root (`./fullinstall`).
-4. Cấu hình địa chỉ IP của máy chủ giám sát khi được yêu cầu.
-5. Chọn chế độ cài đặt (`xinetd` hoặc `daemon`).
-6. Quá trình cài đặt sẽ tự động hoàn tất.
+## Configuring NCPA
 
-Hy vọng hướng dẫn này giúp bạn dễ dàng cài đặt và cấu hình Agent NRPE cho Nagios XI trên máy chủ Linux của mình. Nếu có bất kỳ câu hỏi hoặc vấn đề gì trong quá trình cài đặt, đừng ngần ngại yêu cầu trợ giúp thêm.
+1. The NCPA configuration file is located at `/usr/local/ncpa/etc/ncpa.cfg`.
+2. Edit the configuration file using `vi`:
+   ```bash
+   sudo vi /usr/local/ncpa/etc/ncpa.cfg
+   ```
+3. In `vi`, press `i` to enter insert mode. Modify the line:
+   ```bash
+   community_string = mytoken
+   ```
+   Change it to your required token:
+   ```bash
+   community_string = Str0ngT0k3n
+   ```
+
+4. Save and exit `vi` by typing `:wq` and pressing Enter.
+
+5. Restart the `ncpa_listener` service based on your OS:
+
+### For RHEL/CentOS/Oracle Linux 6.x:
+```bash
+service ncpa_listener restart
+```
+
+### For RHEL/CentOS/Oracle Linux 7.x+:
+```bash
+systemctl restart ncpa_listener.service
+```
+
+### For Ubuntu 12.x/13.x/14.x:
+```bash
+sudo service ncpa_listener restart
+```
+
+### For Ubuntu 15.x+:
+```bash
+sudo systemctl restart ncpa_listener.service
+```
+
+### For Debian 7.x:
+```bash
+service ncpa_listener restart
+```
+
+### For Debian 8.x+:
+```bash
+systemctl restart ncpa_listener.service
+```
+
+### For openSUSE/SUSE SLES:
+```bash
+sudo systemctl restart ncpa_listener.service
+```
+
+### For AIX:
+```bash
+stopsrc -s ncpa_listener
+startsrc -s ncpa_listener
+```
+
+### For MacOS:
+```bash
+sudo launchctl stop com.nagios.ncpa.listener
+sudo launchctl start com.nagios.ncpa.listener
+```
+
+Proceed to the "Configure Firewall" section.
+
+## Configuring the Firewall
+
+### For Linux (RHEL/CentOS/Oracle Linux):
+
+#### RHEL/CentOS/Oracle Linux 5.x/6.x:
+```bash
+iptables -I INPUT -p tcp --destination-port 5693 -j ACCEPT
+service iptables save
+ip6tables -I INPUT -p tcp --destination-port 5693 -j ACCEPT
+service ip6tables save
+```
+
+#### RHEL/CentOS/Oracle Linux 7.x+:
+```bash
+firewall-cmd --zone=public --add-port=5693/tcp
+firewall-cmd --zone=public --add-port=5693/tcp --permanent
+```
+
+### For Ubuntu:
+```bash
+sudo mkdir -p /etc/ufw/applications.d
+sudo sh -c "echo '[NCPA]' > /etc/ufw/applications.d/ncpa"
+sudo sh -c "echo 'title=Nagios Cross Platorm Agent' >> /etc/ufw/applications.d/ncpa"
+sudo sh -c "echo 'description=Nagios Monitoring Agent' >> /etc/ufw/applications.d/ncpa"
+sudo sh -c "echo 'ports=5693/tcp' >> /etc/ufw/applications.d/ncpa"
+sudo ufw allow NCPA
+sudo ufw reload
+```
+
+### For Debian:
+```bash
+iptables -I INPUT -p tcp --destination-port 5693 -j ACCEPT
+apt-get install -y iptables-persistent
+```
+
+### For SUSE SLES:
+#### SUSE SLES 11.x:
+```bash
+sudo sed -i '/FW_SERVICES_EXT_TCP=/s/\"$/\ 5693\"/' /etc/sysconfig/SuSEfirewall2
+sudo /sbin/service SuSEfirewall2_init restart
+sudo /sbin/service SuSEfirewall2_setup restart
+```
+
+#### SUSE SLES 12.x+:
+```bash
+sudo /usr/sbin/SuSEfirewall2 open EXT TCP 5693
+sudo systemctl restart SuSEfirewall2.service
+```
+
+### For MacOS:
+The firewall is not enabled by default and allows port 5693.
+
+Proceed to the "Test NCPA" section.
+
+## Testing NCPA
+
+To verify the installation, access the NCPA web interface:
+
+1. Open a web browser and connect to:
+   ```
+   https://<NCPA IP Address>:5693/
+   ```
+
+2. You'll be presented with a security warning. Click **Advanced**, then **Add Exception** or **Proceed** to continue.
+
+3. Log in using the configured token.
+
+That's it! NCPA is now installed, configured, and ready for use.
+```
+
+This format uses markdown syntax, appropriate for GitHub README files or documentation, making it easy to follow the installation and configuration steps for different systems.
