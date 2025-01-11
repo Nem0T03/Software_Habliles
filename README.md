@@ -1,9 +1,35 @@
-# **Giới Thiệu về HABILES** 
-![Hình ảnh](https://github.com/Nem0T03/Company_Habliles/blob/main/Picture/z6123567056624_c1411d37b1990a17a94468bf4118df54.jpg).
+### **Giới Thiệu về HABILES**
+![Hình ảnh](https://github.com/Nem0T03/Company_Habliles/blob/main/Picture/z6123567056624_c1411d37b1990a17a94468bf4118df54.jpg)
 
-`HABILES` là giải pháp CNTT hiện đại, được thiết kế để tự động hóa việc triển khai hạ tầng, xây dựng hệ thống mạng bảo mật và linh hoạt. Giải pháp này đặc biệt phù hợp với các doanh nghiệp, cung cấp các tính năng tối ưu hóa hạ tầng và quản lý hiệu quả.
+`HABILES` là một giải pháp công nghệ thông tin tiên tiến, được thiết kế để tự động hóa quá trình triển khai hạ tầng và xây dựng một hệ thống mạng bảo mật, linh hoạt. Giải pháp này được tối ưu hóa để phục vụ các doanh nghiệp, mang đến khả năng quản lý hạ tầng hiệu quả và nâng cao năng suất vận hành.
+
+#### **Tính Năng Chính**  
+<p align="center">
+  <img src="https://img.shields.io/badge/Auto_deployment-orange?style=for-the-badge&logo=ansible&logoColor=white" alt="Auto Deployment">
+  <img src="https://img.shields.io/badge/Security-green?style=for-the-badge&logo=security&logoColor=white" alt="Security">
+  <img src="https://img.shields.io/badge/Management-Blue?style=for-the-badge&logo=management&logoColor=white" alt="Management">
+</p>
+
+`HABILES` cung cấp các tính năng giúp tự động hóa quá trình triển khai hạ tầng và nâng cao bảo mật hệ thống. Với các tính năng tối ưu hóa mạnh mẽ, giải pháp này phù hợp với mọi doanh nghiệp, từ nhỏ đến lớn. Dưới đây là một số tính năng nổi bật:
+
+#### **Widget**
+- **Tự động hóa**: Tích hợp **Ansible**, giúp tự động hóa việc triển khai hạ tầng nhanh chóng và chính xác.
+- **Bảo mật mạng**: Cung cấp giải pháp bảo mật toàn diện cho hệ thống mạng, bảo vệ doanh nghiệp khỏi các mối đe dọa.
+- **Quản lý hiệu quả**: Tối ưu hóa hạ tầng và các tài nguyên mạng, giúp việc quản lý trở nên đơn giản và dễ dàng hơn.
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Cloud_Integration-yellow?style=for-the-badge&logo=cloud&logoColor=white" alt="Cloud Integration">
+</p>
+
+#### **Banner & Icons**
+
+Tích hợp các dịch vụ đám mây giúp mở rộng hạ tầng linh hoạt và bảo mật. Một số biểu tượng giúp bạn nhận diện dễ dàng các tính năng mà `HABILES` cung cấp:
+
+- **Tính bảo mật mạnh mẽ** với giải pháp mã hóa GnuPG và tường lửa Fortigate.
+- **Giám sát hệ thống** nhờ vào **NagiosXI** giúp theo dõi hiệu suất của các dịch vụ và giảm thiểu sự cố.
 
 ---
+
 
 ## **Các Tính Năng Chính**
 
