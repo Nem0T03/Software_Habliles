@@ -78,6 +78,21 @@ Hệ thống HABILES được tích hợp đồng bộ, hỗ trợ đầy đủ 
 
 ## **Tích Hợp Cloud**
 
-**Đang cập nhật**  
+`HABILES` tích hợp dễ dàng với các dịch vụ đám mây phổ biến giúp mở rộng hạ tầng và tối ưu hóa quy trình:
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Azure Integration">
+</p>
+
+**Dịch vụ đám mây được hỗ trợ**:
+- **Azure**: Mở rộng hạ tầng và cải tiến bảo mật với các công cụ của Microsoft.
+
 ![Hình ảnh Tích Hợp Cloud](https://github.com/Nem0T03/Company_Habliles/blob/main/Picture/Bi%E1%BB%83u%20%C4%91%E1%BB%93%20kh%C3%B4ng%20c%C3%B3%20ti%C3%AAu%20%C4%91%E1%BB%81.drawio%20(16).drawio%20(3).png)
 
+---
+
+### 5. **Thêm Một Tóm Tắt**
+
+```html
+<p style="font-size: 14px; font-style: italic; color: #555;">`HABILES` cung cấp khả năng tích hợp linh hoạt với các dịch vụ đám mây hàng đầu, hỗ trợ các doanh nghiệp tối ưu hóa hạ tầng, bảo mật và hiệu suất hệ thống.</p>
+```
