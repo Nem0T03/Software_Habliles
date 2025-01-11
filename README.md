@@ -51,9 +51,11 @@ Hệ thống HABILES được tích hợp đồng bộ, hỗ trợ đầy đủ 
 
 (Phần này có thể được bổ sung sơ đồ về tích hợp giữa các thành phần như ADDS, NagiosXI, Ansible, và Web Services).
 
-
+---
 
 ## **Tích Hợp Cloud**
 
-**Đang cập nhật**
-<img src="https://github.com/Nem0T03/Company_Habliles/blob/main/Bi%E1%BB%83u%20%C4%91%E1%BB%93%20kh%C3%B4ng%20c%C3%B3%20ti%C3%AAu%20%C4%91%E1%BB%81.drawio%20(16).drawio%20(3).png">
+**Đang cập nhật**  
+![Hình ảnh Tích Hợp Cloud](https://github.com/Nem0T03/Company_Habliles/blob/main/Bi%E1%BB%83u%20%C4%91%E1%BB%93%20kh%C3%B4ng%20c%C3%B3%20ti%C3%AAu%20%C4%91%E1%BB%81.drawio%20(16).drawio%20(3).png)
+
+---
