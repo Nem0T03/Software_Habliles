@@ -56,30 +56,25 @@ Tích hợp các dịch vụ đám mây giúp mở rộng hạ tầng linh hoạ
 
 ---
 
+
 ## **Tích Hợp và Sơ Đồ Hệ Thống**
 
 Hệ thống HABILES được tích hợp đồng bộ, hỗ trợ đầy đủ từ triển khai đến giám sát:
 
-1. **Tích hợp Ansible với Python** để tạo các kịch bản tự động hóa hiệu quả.
-2. **NagiosXI** giám sát toàn diện, kịp thời phát hiện các vấn đề trong hệ thống.
-3. **SSL** giúp bảo vệ dữ liệu trên các dịch vụ web.
+1. <i class="fa fa-cogs"></i> **Tích hợp Ansible với Python** để tạo các kịch bản tự động hóa hiệu quả.
+2. <i class="fa fa-tachometer-alt"></i> **NagiosXI** giám sát toàn diện, kịp thời phát hiện các vấn đề trong hệ thống.
+3. <i class="fa fa-lock"></i> **SSL** giúp bảo vệ dữ liệu trên các dịch vụ web.
 
----
+--- 
 
 ## **Tóm Tắt**  
 
 `HABILES` mang đến:  
-1. **An toàn dữ liệu và bảo mật tối ưu** nhờ mã hóa mạnh mẽ và các giải pháp tường lửa.  
-2. **Hiệu quả quản lý và triển khai** với các công cụ tự động hóa tiên tiến.  
-3. **Giám sát hệ thống chặt chẽ** qua NagiosXI và các agent hỗ trợ đa nền tảng.  
+1. <i class="fa fa-shield-alt"></i> **An toàn dữ liệu và bảo mật tối ưu** nhờ mã hóa mạnh mẽ và các giải pháp tường lửa.  
+2. <i class="fa fa-cogs"></i> **Hiệu quả quản lý và triển khai** với các công cụ tự động hóa tiên tiến.  
+3. <i class="fa fa-tachometer-alt"></i> **Giám sát hệ thống chặt chẽ** qua NagiosXI và các agent hỗ trợ đa nền tảng.  
 
----
-
-## **Sơ Đồ Minh Họa**
-
-(Phần này có thể được bổ sung sơ đồ về tích hợp giữa các thành phần như ADDS, NagiosXI, Ansible, và Web Services).
-
----
+--- 
 
 ## **Tích Hợp Cloud**
 
