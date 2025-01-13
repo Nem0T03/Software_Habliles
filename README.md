@@ -1,4 +1,4 @@
-### **Giới Thiệu về HABILES**
+### **Giới Thiệu về Software HABILES**
 
 ![Hình ảnh](https://github.com/Nem0T03/Company_Habliles/blob/main/Picture/z6123567056624_c1411d37b1990a17a94468bf4118df54.jpg)
 
