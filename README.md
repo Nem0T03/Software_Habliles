@@ -2,7 +2,7 @@
 
 ![Hình ảnh](https://github.com/Nem0T03/Company_Habliles/blob/main/Picture/z6123567056624_c1411d37b1990a17a94468bf4118df54.jpg)
 
-**`HABILES`** là giải pháp công nghệ thông tin tiên tiến, giúp tự động hóa quá trình triển khai hạ tầng và xây dựng hệ thống mạng bảo mật, linh hoạt. Được tối ưu hóa cho các doanh nghiệp, HABILES mang lại khả năng quản lý hạ tầng hiệu quả và nâng cao năng suất vận hành.
+**`HABILES`** là một giải pháp công nghệ thông tin tiên tiến giúp tự động hóa quá trình triển khai hạ tầng và xây dựng hệ thống mạng bảo mật, linh hoạt. Được tối ưu hóa cho các doanh nghiệp, HABILES mang lại khả năng quản lý hạ tầng hiệu quả và nâng cao năng suất vận hành.
 
 ---
 
@@ -12,6 +12,8 @@
   <img src="https://img.shields.io/badge/Auto_deployment-orange?style=for-the-badge&logo=ansible&logoColor=white" alt="Auto Deployment">
   <img src="https://img.shields.io/badge/Security-green?style=for-the-badge&logo=security&logoColor=white" alt="Security">
   <img src="https://img.shields.io/badge/Management-Blue?style=for-the-badge&logo=management&logoColor=white" alt="Management">
+  <img src="https://img.shields.io/badge/Cloud_Azure-blue?style=for-the-badge&logo=microsoft-azure&logoColor=white" alt="Cloud Azure">
+  <img src="https://img.shields.io/badge/Automation-yellow?style=for-the-badge&logo=python&logoColor=white" alt="Automation">
 </p>
 
 `HABILES` tích hợp các công cụ mạnh mẽ như **Ansible**, **NagiosXI**, và **Veeam Backup** để đảm bảo tính tự động hóa, bảo mật và quản lý hiệu quả. Dưới đây là những tính năng nổi bật:
@@ -56,4 +58,15 @@
 
 **`HABILES`** mang đến giải pháp toàn diện giúp doanh nghiệp quản lý hạ tầng, bảo mật và vận hành hiệu quả.
 
---- 
+---
+
+### **Công Nghệ và Công Cụ Sử Dụng**
+- **Ansible**: Công cụ tự động hóa giúp triển khai hạ tầng nhanh chóng và chính xác.
+- **NagiosXI**: Giám sát hiệu suất và phát hiện sự cố của dịch vụ.
+- **Veeam Backup**: Sao lưu dữ liệu và khôi phục nhanh chóng.
+- **GnuPG**: Mã hóa mạnh mẽ bảo vệ dữ liệu.
+- **Fortigate**: Tường lửa bảo vệ hệ thống và ngăn chặn các cuộc tấn công.
+- **Python**: Lập trình tự động hóa và tối ưu hóa các quy trình.
+- **Azure**: Mở rộng và bảo mật hạ tầng đám mây. 
+
+`HABILES` là lựa chọn lý tưởng cho các doanh nghiệp tìm kiếm giải pháp toàn diện để tự động hóa, bảo mật, và nâng cao hiệu quả vận hành hạ tầng.
