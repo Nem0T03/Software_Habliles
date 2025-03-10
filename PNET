@@ -1,0 +1,24 @@
+# PNETLab - Powerful Network Emulation Tool
+
+![PNETLab Logo](https://pnetlab.com/logo.png)
+
+PNETLab is an advanced network emulation platform that allows users to create, simulate, and test network topologies easily. It supports multiple network devices and is widely used for CCNA, CCNP, and CCIE training.
+
+## 🚀 Download PNETLab
+
+[![Download PNETLab](https://img.shields.io/badge/Download-PNETLab-blue?style=for-the-badge&logo=cloudsmith)](https://pnetlab.com/pages/download)
+
+## 📌 Installation Guide
+
+1. **Download PNETLab** from the [official page](https://pnetlab.com/pages/download).
+2. Extract the downloaded file.
+3. Follow the setup instructions for your operating system.
+4. Launch PNETLab and start creating your network topology!
+
+## 🌐 Community & Support
+
+Join the PNETLab community on GitHub for updates, discussions, and issue tracking:
+
+[![GitHub](https://img.shields.io/badge/GitHub-PNETLab-black?style=for-the-badge&logo=github)](https://github.com/pnetlab)
+
+For more details, visit the [PNETLab website](https://pnetlab.com/).
