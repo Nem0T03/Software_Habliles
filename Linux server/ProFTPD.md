@@ -1,123 +1,124 @@
-### Điều kiện để cài đặt ProFTPD
+# **Installation Guide for ProFTPD on Ubuntu**
 
-Để cài đặt **ProFTPD** trên hệ thống, bạn cần đáp ứng các điều kiện sau:  
-1. **Máy chủ Ubuntu 22.04**  
-2. **Quyền root** hoặc quyền `sudo` trên máy chủ  
+## **Prerequisites** ✅
+To install **ProFTPD** on your system, ensure you meet the following requirements:
+1. **Ubuntu 22.04 Server** 🖥️
+2. **Root access** or `sudo` privileges 🔑
 
 ---
 
-### Hướng dẫn cài đặt ProFTPD trên Ubuntu
+## **Steps to Install ProFTPD** 📌
 
-#### Bước 1: **Cập nhật và nâng cấp hệ thống**
-- Cập nhật danh sách gói:
+### **Step 1: Update and Upgrade the System** 🔄
+- Update package lists:
   ```bash
   sudo apt-get update -y
   ```
-- Nâng cấp hệ thống:
+- Upgrade system packages:
   ```bash
   sudo apt-get upgrade -y
   ```
-- Khởi động lại hệ thống:
+- Reboot the system:
   ```bash
   reboot
   ```
 
-#### Bước 2: **Cài đặt ProFTPD**
-- Cài đặt ProFTPD:
+### **Step 2: Install ProFTPD** 🛠️
+- Install ProFTPD:
   ```bash
   sudo apt install proftpd -y
   ```
-- Kiểm tra phiên bản để đảm bảo cài đặt thành công:
+- Verify installation:
   ```bash
   sudo proftpd --version
   ```
 
-#### Bước 3: **Kích hoạt dịch vụ ProFTPD**
-- Khởi động dịch vụ:
+### **Step 3: Start and Enable ProFTPD Service** ⚙️
+- Start the service:
   ```bash
   sudo systemctl start proftpd
   ```
-- Kích hoạt dịch vụ khởi động cùng hệ thống:
+- Enable it at boot:
   ```bash
   sudo systemctl enable proftpd
   ```
-- Kiểm tra trạng thái:
+- Check service status:
   ```bash
   sudo systemctl status proftpd
   ```
 
 ---
 
-### Định cấu hình ProFTPD
+## **Configure ProFTPD** ⚡
 
-#### Mở tệp cấu hình:
+### **Edit Configuration File** ✏️
 ```bash
 sudo nano /etc/proftpd/proftpd.conf
 ```
 
-#### Chỉnh sửa các chỉ thị quan trọng:
-- **Đặt thư mục gốc mặc định**:
+### **Modify Key Directives** 🔧
+- **Set default root directory**:
   ```conf
   DefaultRoot /home/Linux/Docs
   ```
-  Hoặc cấu hình giới hạn quyền truy cập cho từng người dùng:
+  Or restrict access per user:
   ```conf
   DefaultRoot /home/linux Tom
   DefaultRoot / Emma
   ```
-- **Đặt tên cho máy chủ FTP**:
+- **Set FTP server name**:
   ```conf
   ServerName "My ProFTPD"
   ```
 
 ---
 
-### Tạo người dùng cho ProFTPD
+## **Create a User for ProFTPD** 👤
 
-#### Tạo người dùng:
+### **Create a New User**
 ```bash
 sudo useradd -m username
 ```
 
-#### Đặt mật khẩu:
+### **Set Password** 🔐
 ```bash
 sudo passwd username
 ```
 
 ---
 
-### Cấu hình SSL/TLS cho ProFTPD
+## **Enable SSL/TLS for ProFTPD** 🔒
 
-#### Cài đặt OpenSSL:
+### **Install OpenSSL**
 ```bash
 sudo apt-get install openssl -y
 ```
 
-#### Tạo chứng chỉ SSL/TLS:
+### **Generate SSL Certificate** 🛡️
 ```bash
 sudo openssl req -x509 -newkey rsa:1024 -keyout /etc/ssl/private/proftpd.key -out /etc/ssl/certs/proftpd.crt -nodes -days 365
 ```
 
-#### Cấp quyền cho chứng chỉ:
+### **Set Permissions**
 ```bash
 sudo chmod 600 /etc/ssl/private/proftpd.key
 sudo chmod 600 /etc/ssl/certs/proftpd.crt
 ```
 
-#### Kích hoạt SSL trong cấu hình:
-- Mở tệp cấu hình:
+### **Enable SSL in Configuration**
+- Open the config file:
   ```bash
   sudo nano /etc/proftpd/proftpd.conf
   ```
-- Bỏ dấu `#` ở dòng:
+- Uncomment the following line:
   ```conf
   Include /etc/proftpd/tls.conf
   ```
-- Mở tệp TLS:
+- Open TLS config file:
   ```bash
   sudo nano /etc/proftpd/tls.conf
   ```
-- Bỏ ghi chú (uncomment) các dòng:
+- Uncomment and modify:
   ```conf
   <IfModule mod_tls.c>
   TLSEngine on
@@ -131,24 +132,25 @@ sudo chmod 600 /etc/ssl/certs/proftpd.crt
   TLSRequired on
   ```
 
-#### Khởi động lại dịch vụ để áp dụng thay đổi:
+### **Restart ProFTPD Service** 🔄
 ```bash
 sudo systemctl restart proftpd
 ```
 
 ---
 
-### Gỡ cài đặt ProFTPD
+## **Uninstall ProFTPD** ❌
 
-#### Dừng dịch vụ:
+### **Stop the Service** 🚫
 ```bash
 sudo systemctl stop proftpd
 ```
 
-#### Gỡ cài đặt:
+### **Remove ProFTPD** 🗑️
 ```bash
 sudo apt-get autoremove proftpd-dev
 sudo apt-get purge proftpd-basic
 ```
 
-Sau khi thực hiện các bước trên, **ProFTPD** sẽ được xóa hoàn toàn khỏi hệ thống.
+After completing these steps, **ProFTPD** will be completely removed from the system.
+
