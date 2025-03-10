@@ -1,0 +1,7 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/" # Adjust if requirements.txt is in a subdirectory
+    schedule:
+      interval: "weekly"
+
