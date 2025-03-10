@@ -1,21 +1,21 @@
-# Hướng Dẫn Cài Đặt SSL Cho Website `nkbinh.shop` Trên Apache
+# Guide to Installing SSL for the Website `nkbinh.shop` on Apache
 
-## 1. Cài Đặt Let's Encrypt và Certbot
-Đầu tiên, cài đặt Certbot và module SSL cho Apache:
+## 1. Install Let's Encrypt and Certbot
+First, install Certbot and the SSL module for Apache:
 ```bash
 sudo apt update
 sudo apt install certbot python3-certbot-apache
 ```
 
-## 2. Cấu Hình Apache Cho HTTP và HTTPS
+## 2. Configure Apache for HTTP and HTTPS
 
-### Bước 1: Cập Nhật File `000-default.conf` Cho HTTP
-Sửa file cấu hình mặc định để hỗ trợ Let's Encrypt:
+### Step 1: Update the `000-default.conf` File for HTTP
+Modify the default configuration file to support Let's Encrypt:
 ```bash
 sudo nano /etc/apache2/sites-enabled/000-default.conf
 ```
 
-Thêm nội dung sau:
+Add the following content:
 ```apache
 <VirtualHost *:80>
     ServerName nkbinh.shop
@@ -36,36 +36,36 @@ Thêm nội dung sau:
 </VirtualHost>
 ```
 
-Kiểm tra cấu hình và khởi động lại Apache:
+Check the configuration and restart Apache:
 ```bash
 sudo apache2ctl configtest
 sudo systemctl restart apache2
 ```
 
-### Bước 2: Tạo File Xác Thực Let's Encrypt (Tùy Chọn)
-Kiểm tra quyền truy cập thư mục `.well-known`:
+### Step 2: Create a Verification File for Let's Encrypt (Optional)
+Check access to the `.well-known` directory:
 ```bash
 echo "test" | sudo tee /var/www/html/.well-known/acme-challenge/test
 ```
-Mở trình duyệt truy cập `http://nkbinh.shop/.well-known/acme-challenge/test` để kiểm tra.
+Open a browser and access `http://nkbinh.shop/.well-known/acme-challenge/test` to verify.
 
 ---
 
-## 3. Cấp SSL Bằng Let's Encrypt
-Chạy lệnh sau để tự động cấp SSL và cập nhật cấu hình Apache:
+## 3. Obtain SSL from Let's Encrypt
+Run the following command to automatically obtain SSL and update the Apache configuration:
 ```bash
 sudo certbot --apache -d nkbinh.shop
 ```
 
-Certbot sẽ tự động:
-1. Xác thực quyền sở hữu tên miền.
-2. Cập nhật file cấu hình Apache cho HTTPS.
-3. Tự động khởi động lại Apache.
+Certbot will automatically:
+1. Verify domain ownership.
+2. Update the Apache configuration file for HTTPS.
+3. Restart Apache automatically.
 
 ---
 
-## 4. Kiểm Tra File Cấu Hình HTTPS
-Sau khi cài SSL, Certbot sẽ tạo file cấu hình HTTPS (ví dụ: `/etc/apache2/sites-available/nkbinh.shop.conf`). Nội dung file mẫu:
+## 4. Verify the HTTPS Configuration File
+After installing SSL, Certbot will create an HTTPS configuration file (e.g., `/etc/apache2/sites-available/nkbinh.shop.conf`). Example file content:
 ```apache
 <VirtualHost *:443>
     ServerName nkbinh.shop
@@ -87,7 +87,7 @@ Sau khi cài SSL, Certbot sẽ tạo file cấu hình HTTPS (ví dụ: `/etc/apa
 </VirtualHost>
 ```
 
-Kiểm tra cấu hình và khởi động lại Apache:
+Check the configuration and restart Apache:
 ```bash
 sudo apache2ctl configtest
 sudo systemctl restart apache2
@@ -95,21 +95,20 @@ sudo systemctl restart apache2
 
 ---
 
-## 5. Gia Hạn Chứng Chỉ SSL
-Chứng chỉ SSL của Let's Encrypt có hiệu lực trong 90 ngày. Để gia hạn tự động, thêm cron job:
+## 5. Renew SSL Certificates
+Let's Encrypt SSL certificates are valid for 90 days. To enable automatic renewal, add a cron job:
 ```bash
 sudo crontab -e
 ```
 
-Thêm dòng sau để kiểm tra và gia hạn hàng ngày:
+Add the following line to check and renew the certificate daily:
 ```cron
 0 3 * * * certbot renew --quiet
 ```
 
 ---
 
-## 6. Kiểm Tra Hoạt Động SSL
-- Truy cập `https://nkbinh.shop` để kiểm tra.
-- Sử dụng công cụ [SSL Labs](https://www.ssllabs.com/ssltest/) để đánh giá cấu hình SSL.
+## 6. Verify SSL Functionality
+- Access `https://nkbinh.shop` to check.
+- Use the [SSL Labs](https://www.ssllabs.com/ssltest/) tool to evaluate the SSL configuration.
 
----
