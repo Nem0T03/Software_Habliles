@@ -1,55 +1,55 @@
-# Hướng Dẫn Triển Khai Website Trên Linux
+# Website Deployment Guide on Linux
 
-## 1. Yêu Cầu Hệ Thống
-### Cài đặt các phần mềm cần thiết:
-- **Git**: Để quản lý mã nguồn.
-- **Apache/Nginx**: Máy chủ web.
-- **PHP** (nếu là trang PHP).
-- **MySQL/MariaDB** (nếu cần cơ sở dữ liệu).
-- **Node.js** (nếu là ứng dụng Node.js).
+## 1. System Requirements
+### Install the necessary software:
+- **Git**: For source code management.
+- **Apache/Nginx**: Web server.
+- **PHP** (if deploying a PHP website).
+- **MySQL/MariaDB** (if a database is required).
+- **Node.js** (if deploying a Node.js application).
 
-## 2. Các Bước Triển Khai
+## 2. Deployment Steps
 
-### Bước 1: Cài Đặt Các Phần Mềm Cần Thiết
+### Step 1: Install Required Software
 ```bash
-# Cập nhật hệ thống
+# Update the system
 sudo apt update && sudo apt upgrade -y
 
-# Cài đặt Apache hoặc Nginx
+# Install Apache or Nginx
 sudo apt install apache2 -y
-# hoặc
+# or
 sudo apt install nginx -y
 
-# Cài đặt PHP (nếu cần)
+# Install PHP (if needed)
 sudo apt install php libapache2-mod-php -y
 
-# Cài đặt MySQL/MariaDB (nếu cần)
+# Install MySQL/MariaDB (if needed)
 sudo apt install mysql-server -y
 sudo mysql_secure_installation
 
-# Cài đặt Git
+# Install Git
 sudo apt install git -y
 ```
 
-### Bước 2: Clone Dự Án Từ GitHub
+### Step 2: Clone the Project from GitHub
 ```bash
-# Tạo thư mục chứa dự án
+# Create a directory for the project
 cd /var/www/html
 sudo mkdir mywebsite
 sudo chown $USER:$USER mywebsite
 
-# Clone dự án
+# Clone the project
 cd mywebsite
 git clone https://github.com/username/repository.git .
 ```
 
-### Bước 3: Cấu Hình Máy Chủ Web
-#### Với Apache:
-- Tạo file cấu hình mới:
+### Step 3: Configure the Web Server
+#### For Apache:
+- Create a new configuration file:
 ```bash
 sudo nano /etc/apache2/sites-available/mywebsite.conf
 ```
-- Thêm nội dung sau:
+- Add the following content:
 ```apache
 <VirtualHost *:80>
     ServerAdmin admin@example.com
@@ -67,19 +67,19 @@ sudo nano /etc/apache2/sites-available/mywebsite.conf
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
-- Kích hoạt site và khởi động lại Apache:
+- Enable the site and restart Apache:
 ```bash
 sudo a2ensite mywebsite.conf
 sudo a2enmod rewrite
 sudo systemctl restart apache2
 ```
 
-#### Với Nginx:
-- Tạo file cấu hình mới:
+#### For Nginx:
+- Create a new configuration file:
 ```bash
 sudo nano /etc/nginx/sites-available/mywebsite
 ```
-- Thêm nội dung sau:
+- Add the following content:
 ```nginx
 server {
     listen 80;
@@ -100,37 +100,35 @@ server {
     }
 }
 ```
-- Kích hoạt site và khởi động lại Nginx:
+- Enable the site and restart Nginx:
 ```bash
 sudo ln -s /etc/nginx/sites-available/mywebsite /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
 ```
 
-### Bước 4: Cấu Hình Tên Miền (nếu có)
-- Cập nhật DNS để trỏ tên miền tới địa chỉ IP của server.
-- Sử dụng Let’s Encrypt để cài đặt chứng chỉ SSL:
+### Step 4: Configure the Domain Name (if applicable)
+- Update DNS records to point your domain to the server's IP address.
+- Use Let’s Encrypt to install an SSL certificate:
 ```bash
 sudo apt install certbot python3-certbot-apache
 sudo certbot --apache
 ```
 
-### Bước 5: Kiểm Tra Website
-- Mở trình duyệt và truy cập `http://<địa_chỉ_IP>` hoặc tên miền của bạn.
+### Step 5: Test the Website
+- Open a browser and access `http://<your_IP_address>` or your domain name.
 
-### Bước 6: Tự Động Hóa (Tùy chọn)
-- Sử dụng **cron job** để cập nhật mã nguồn tự động:
+### Step 6: Automation (Optional)
+- Use **cron job** to automatically update source code:
 ```bash
 crontab -e
-# Thêm dòng sau để pull mã nguồn mỗi ngày
+# Add the following line to pull the latest code daily
 0 2 * * * cd /var/www/html/mywebsite && git pull
 ```
 
 ---
 
-## 3. Kết Luận
-Bạn đã triển khai thành công website trên Linux. Nếu gặp lỗi, kiểm tra file log ở:
+## 3. Conclusion
+You have successfully deployed a website on Linux. If you encounter errors, check the log files at:
 - Apache: `/var/log/apache2/error.log`
 - Nginx: `/var/log/nginx/error.log`
-
---- 
