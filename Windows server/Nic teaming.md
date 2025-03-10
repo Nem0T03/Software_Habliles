@@ -1,77 +1,79 @@
-### Hướng dẫn thiết lập NIC Teaming trên Windows Server
 
-#### **Thiết lập NIC Teaming qua GUI (Graphical User Interface):**
+### **Guide to Setting Up NIC Teaming on Windows Server**  
 
-1. **Mở Server Manager**:
-   - Truy cập **Server Manager** từ menu Start hoặc thanh taskbar.
-   - Chọn **Local Server**.
+#### **Setting Up NIC Teaming via GUI (Graphical User Interface):**  
 
-2. **Bật NIC Teaming**:
-   - Tìm mục **Properties** trong Server Manager.
-   - Chọn **NIC Teaming** > trạng thái **Disabled** > nhấn để mở cửa sổ cấu hình.
+1. **Open Server Manager:**  
+   - Access **Server Manager** from the Start menu or taskbar.  
+   - Select **Local Server**.  
 
-3. **Chọn Network Adapter**:
-   - Trong cửa sổ NIC Teaming, nhìn góc dưới bên phải, tại phần **Adapters and Interfaces**.
-   - Chọn các card mạng bạn muốn thêm vào nhóm NIC Team.
+2. **Enable NIC Teaming:**  
+   - Locate the **Properties** section in Server Manager.  
+   - Click **NIC Teaming** > Status **Disabled** > click to open the configuration window.  
 
-4. **Tạo Team**:
-   - Nhấn vào **TASKS** > chọn **Add to New Team**.
+3. **Select Network Adapters:**  
+   - In the NIC Teaming window, look at the **Adapters and Interfaces** section in the bottom right.  
+   - Select the network adapters you want to add to the NIC Team.  
 
-5. **Cấu hình Team**:
-   - Một hộp thoại mới xuất hiện, hiển thị các bộ điều hợp mạng và các thành viên.
-   - **Nhập tên** cho nhóm NIC Team.
+4. **Create a Team:**  
+   - Click **TASKS** > select **Add to New Team**.  
 
-6. **Cấu hình bổ sung**:
-   - Chọn **Additional Properties** ở dưới cùng:
-     - **Switch Independent**: Hoạt động độc lập với switch.
-     - **Static**: Phụ thuộc vào cấu hình tĩnh trên switch.
-     - **LACP (Link Aggregation Control Protocol)**: Hỗ trợ cấu hình động trên switch.
-   - **Chế độ cân bằng tải**: Chọn **Dynamic** để đạt hiệu suất tốt nhất.
+5. **Configure the Team:**  
+   - A new dialog box will appear, listing the available network adapters and members.  
+   - **Enter a name** for the NIC Team.  
 
-7. **Hoàn tất**:
-   - Nhấn **OK** để hoàn thành. Nhóm NIC Team mới sẽ được tạo.
+6. **Additional Configuration:**  
+   - Select **Additional Properties** at the bottom:  
+     - **Switch Independent**: Works independently of the switch.  
+     - **Static**: Requires static configuration on the switch.  
+     - **LACP (Link Aggregation Control Protocol)**: Supports dynamic configuration with a compatible switch.  
+   - **Load Balancing Mode**: Select **Dynamic** for optimal performance.  
+
+7. **Complete the Setup:**  
+   - Click **OK** to finalize. The new NIC Team will be created.  
 
 ---
 
-#### **Thiết lập NIC Teaming bằng PowerShell:**
+#### **Setting Up NIC Teaming via PowerShell:**  
 
-1. **Mở PowerShell**:
-   - Gõ **PowerShell** vào thanh tìm kiếm và nhấn Enter.
+1. **Open PowerShell:**  
+   - Type **PowerShell** in the search bar and press Enter.  
 
-2. **Kiểm tra các Network Adapter**:
-   - Nhập lệnh:
+2. **Check Available Network Adapters:**  
+   - Run the command:  
      ```powershell
      Get-NetAdapter
-     ```
-   - Danh sách các card mạng hiện tại sẽ hiển thị.
+     ```  
+   - This will display a list of all available network adapters.  
 
-3. **Tạo NIC Team**:
-   - Sử dụng lệnh sau:
+3. **Create a NIC Team:**  
+   - Use the following command:  
      ```powershell
      New-NetLbfoTeam "Team1" "NIC1", "NIC2"
-     ```
-     - **"Team1"**: Tên nhóm NIC Team.
-     - **"NIC1", "NIC2"**: Tên các card mạng đã chọn. Bạn có thể thêm nhiều card mạng nếu cần.
+     ```  
+     - **"Team1"**: The name of the NIC Team.  
+     - **"NIC1", "NIC2"**: The names of the selected network adapters (you can add more if needed).  
 
-4. **Xác minh cấu hình**:
-   - Sử dụng lệnh:
+4. **Verify the Configuration:**  
+   - Run the command:  
      ```powershell
      Get-NetLbfoTeam
-     ```
-   - Hiển thị thông tin nhóm vừa tạo.
+     ```  
+   - This will display details about the created NIC Team.  
 
-5. **Kiểm tra trạng thái nhóm**:
-   - Sử dụng lệnh sau để kiểm tra trạng thái nhóm và các thành viên:
+5. **Check Team Status:**  
+   - Use the following command to check the status of the team and its members:  
      ```powershell
      Get-NetLbfoTeam -Name Team1
      Get-NetAdapter -Name Team1
-     ```
-
-   - Trạng thái của nhóm sẽ hiển thị **Up/Active** hoặc **Up/Standby**.
+     ```  
+   - The team's status will show **Up/Active** or **Up/Standby**.  
 
 ---
 
-### **Lưu ý**:
-- **Switch Independent** phù hợp nếu không sử dụng switch hỗ trợ LACP.
-- **Dynamic** được khuyến nghị để tối ưu hóa cân bằng tải và hiệu suất.
-- Đảm bảo các card mạng được kết nối và hoạt động ổn định trước khi cấu hình.
+### **Notes:**  
+- **Switch Independent** mode is recommended if your switch does not support LACP.  
+- **Dynamic** load balancing is recommended for optimal performance.  
+- Ensure all network adapters are properly connected and functioning before configuring NIC Teaming.  
+
+Let me know if you need further refinements! 🚀
