@@ -50,6 +50,18 @@
 
 ---
 
+## **Running on PNETLab**
+
+`HABILES` is fully compatible with **PNETLab**, allowing users to create virtualized network environments and test infrastructure deployment scenarios. The integration with **PNETLab** provides:
+
+1. **Virtualized Testing Environment**: Deploy and test infrastructure in a controlled environment.
+2. **Simulated Network Topologies**: Validate configurations before real-world implementation.
+3. **Automated Deployment Testing**: Use Ansible and Python scripts for hands-free deployments.
+
+![PNETLab Integration](https://pnetlab.com/pages/download)
+
+---
+
 ## **Summary**
 
 1. **Data Security & Protection**: Ensures robust security with encryption and firewalls.
@@ -68,6 +80,6 @@
 - **Fortigate**: Protects systems from cyber threats with an advanced firewall.
 - **Python**: Facilitates automation and process optimization.
 - **Azure**: Supports scalable and secure cloud infrastructure.
+- **PNETLab**: Provides a virtualized environment for network and automation testing.
 
 **`HABILES`** is the ideal choice for businesses seeking an all-in-one solution for automation, security, and efficient infrastructure management.
-
