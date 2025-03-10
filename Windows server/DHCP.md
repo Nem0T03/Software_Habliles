@@ -1,80 +1,81 @@
-### **Bước 1: Cài đặt DHCP Server**
-1. **Mở Server Manager**:
-   - Truy cập từ menu Start, chọn *Server Manager*.
-   - Nhấn vào *Add Roles and Features* và chọn *Next*.
-   
-2. **Chọn Installation Type**:
-   - Chọn *Role-Based or Feature-Based Installation*, sau đó nhấn *Next*.
+### **Step 1: Install DHCP Server**
+1. **Open Server Manager**:
+   - Access *Server Manager* from the Start menu.
+   - Click *Add Roles and Features* and select *Next*.
 
-3. **Chọn máy chủ để cài đặt**:
-   - Lựa chọn máy chủ từ danh sách, nhấn *Next*.
+2. **Choose Installation Type**:
+   - Select *Role-Based or Feature-Based Installation*, then click *Next*.
 
-4. **Thêm vai trò DHCP Server**:
-   - Chọn *DHCP Server* từ danh sách vai trò.
-   - Thêm *Management Tools* nếu cần, nhấn *Next* và xác nhận.
+3. **Select the Target Server**:
+   - Choose the server from the list and click *Next*.
 
-5. **Xác nhận cài đặt**:
-   - Nhấn *Install*. Sau khi hoàn tất, đóng cửa sổ và chuyển sang cấu hình.
+4. **Add DHCP Server Role**:
+   - Select *DHCP Server* from the list of roles.
+   - Add *Management Tools* if needed, click *Next*, and confirm.
 
----
-
-### **Bước 2: Cấu hình sau triển khai**
-1. **Hoàn tất cài đặt sau triển khai**:
-   - Trong *Server Manager*, chọn *DHCP*.
-   - Nhấp vào cảnh báo vàng và chọn *Complete DHCP Configuration*.
-   - Chọn *Skip AD authorization* nếu máy chủ không thuộc Active Directory.
-
-2. **Cấu hình DHCP trong Server Manager**:
-   - Truy cập *Tools* > *DHCP* để mở bảng điều khiển DHCP.
+5. **Confirm Installation**:
+   - Click *Install*. Once completed, close the window and proceed to configuration.
 
 ---
 
-### **Bước 3: Tạo Scope mới**
-1. **Thêm Scope**:
-   - Trong bảng điều khiển DHCP, nhấp chuột phải vào *IPv4* > *New Scope*.
+### **Step 2: Post-Installation Configuration**
+1. **Complete DHCP Configuration**:
+   - In *Server Manager*, select *DHCP*.
+   - Click the yellow warning icon and select *Complete DHCP Configuration*.
+   - Choose *Skip AD authorization* if the server is not part of Active Directory.
 
-2. **Đặt tên Scope**:
-   - Nhập tên và mô tả cho Scope, nhấn *Next*.
-
-3. **Thiết lập dải IP**:
-   - Nhập *IP bắt đầu* và *IP kết thúc*, mặt nạ mạng con. Nhấn *Next*.
-
-4. **Loại trừ IP (nếu cần)**:
-   - Loại trừ các IP cần giữ lại (như máy in, thiết bị mạng khác).
-
-5. **Thiết lập thời gian thuê (Lease Duration)**:
-   - Đặt thời gian cho phép mượn IP, nhấn *Next*.
+2. **Configure DHCP in Server Manager**:
+   - Navigate to *Tools* > *DHCP* to open the DHCP console.
 
 ---
 
-### **Bước 4: Cấu hình thêm**
-1. **Gateway mặc định (Default Gateway)**:
-   - Nhập địa chỉ Gateway, nhấn *Add*, sau đó *Next*.
+### **Step 3: Create a New Scope**
+1. **Add a Scope**:
+   - In the DHCP console, right-click *IPv4* > *New Scope*.
 
-2. **Domain Name và DNS Servers**:
-   - Cung cấp thông tin DNS, nhấn *Next*.
+2. **Define Scope Name**:
+   - Enter a name and description for the Scope, then click *Next*.
 
-3. **Cài đặt tùy chọn WINS (nếu cần)**:
-   - Nhập thông tin WINS Server hoặc bỏ qua.
+3. **Set IP Range**:
+   - Enter the *Start IP* and *End IP*, along with the subnet mask. Click *Next*.
 
-4. **Kích hoạt Scope**:
-   - Chọn kích hoạt ngay hoặc sau, nhấn *Next* và hoàn tất.
+4. **Exclude IP Addresses (Optional)**:
+   - Exclude any reserved IPs (e.g., for printers, network devices).
 
----
-
-### **Bước 5: Kiểm tra và xác minh**
-1. **Kiểm tra Scope**:
-   - Đảm bảo cấu hình Scope đã hoạt động trong bảng điều khiển DHCP.
-
-2. **Cấu hình máy khách DHCP**:
-   - Thiết lập các thiết bị trên mạng để nhận IP tự động từ máy chủ DHCP.
+5. **Set Lease Duration**:
+   - Define the lease duration for assigned IP addresses, then click *Next*.
 
 ---
 
-### **Mở bảng điều khiển DHCP**
-- **Cách 1**: Từ *Windows Administrative Tools*.
-- **Cách 2**: Truy cập từ menu *Tools* trong *Server Manager*.
-- **Cách 3**: Sử dụng lệnh `dhcpmgmt.msc` trong hộp thoại *Run*.
-- **Cách 4**: Tìm kiếm trực tiếp từ menu *Start*.
+### **Step 4: Additional Configuration**
+1. **Default Gateway**:
+   - Enter the gateway address, click *Add*, then *Next*.
+
+2. **Domain Name and DNS Servers**:
+   - Provide DNS information, then click *Next*.
+
+3. **Configure WINS (if needed)**:
+   - Enter WINS Server details or skip this step.
+
+4. **Activate the Scope**:
+   - Choose to activate immediately or later, then click *Next* to complete setup.
 
 ---
+
+### **Step 5: Verification and Testing**
+1. **Check Scope Status**:
+   - Ensure the Scope is active and properly configured in the DHCP console.
+
+2. **Configure DHCP Clients**:
+   - Set client devices to obtain an IP address automatically from the DHCP server.
+
+---
+
+### **Ways to Open the DHCP Console**
+- **Method 1**: Via *Windows Administrative Tools*.
+- **Method 2**: Navigate to *Tools* in *Server Manager*.
+- **Method 3**: Run `dhcpmgmt.msc` in the *Run* dialog.
+- **Method 4**: Search for *DHCP* in the Start menu.
+
+---
+
